@@ -40,6 +40,7 @@ linear_drag = SubResource("Curve_0rdlk")
 metadata/_custom_type_script = "uid://df8g3j31hj85f"
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(0, -7)
 texture = ExtResource("4_vcgwd")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
