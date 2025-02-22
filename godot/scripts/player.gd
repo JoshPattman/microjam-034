@@ -2,6 +2,9 @@ extends CustomRigidbody2D
 
 class_name Player
 
+signal mined(amount: float)
+signal died
+
 @export var max_accel = 500
 @export var max_angular_accel = 25
 @export var max_linear_breaker_power = 100
@@ -34,6 +37,7 @@ func _move_and_slide(delta: float) -> void:
 		if explosion_instance is Node2D:
 			explosion_instance.position = position
 			explosion_instance.scale *= 2
+		died.emit()
 		add_sibling(explosion_instance)
 		queue_free()
 
@@ -86,5 +90,5 @@ func handle_collection():
 			closest_resource = r
 			
 	if closest_distance < collection_radius_sqaure:
-		closest_resource.mine(1.0)
+		mined.emit(closest_resource.mine(1.0))
 		

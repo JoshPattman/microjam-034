@@ -7,6 +7,18 @@ var time_since_last_asteroid: float = 0.0
 
 var resource_asteroid_scene = preload("res://game_objects/resource_asteroid.tscn")
 
+var player_resources: float = 0.0:
+	set(new):
+		$PlayerCamera/UI/Resources/Label.text = str(new)
+		player_resources = new
+
+func _ready() -> void:
+	$Station.ship_spawned.connect(
+		func(ship):
+			ship.mined.connect(func(amount): player_resources += amount)
+			ship.died.connect(func(): player_resources = 0.0)
+	)
+
 func spawn_asteroid():
 	var instance = asteroid_scene.instantiate()
 	$Asteroids.add_child(instance)
