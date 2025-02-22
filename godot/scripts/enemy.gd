@@ -51,6 +51,8 @@ func _custom_process(delta: float) -> void:
 					exp.global_position = global_position
 					exp.scale *= 3
 				add_sibling(exp)
+				if current_target is Player:
+					current_target.blow_up()
 				queue_free()
 
 func _custom_physics_process(delta: float) -> void:

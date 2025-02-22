@@ -30,16 +30,19 @@ func _ready() -> void:
 	add_to_group("player")
 	add_to_group("enemy_targets")
 
+func blow_up() -> void:
+	var explosion_instance = explosion.instantiate()
+	if explosion_instance is Node2D:
+		explosion_instance.position = position
+		explosion_instance.scale *= 2
+	died.emit()
+	add_sibling(explosion_instance)
+	queue_free()
+
 func _move_and_slide(delta: float) -> void:
 	var col = move_and_collide(delta * velocity)
 	if col != null:
-		var explosion_instance = explosion.instantiate()
-		if explosion_instance is Node2D:
-			explosion_instance.position = position
-			explosion_instance.scale *= 2
-		died.emit()
-		add_sibling(explosion_instance)
-		queue_free()
+		blow_up()
 
 func _custom_physics_process(delta: float) -> void:
 	var booster = 0.0
