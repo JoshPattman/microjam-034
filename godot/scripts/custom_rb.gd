@@ -17,6 +17,10 @@ static var player_time_mult: float = 1.0
 
 var local_gravity_accel: Vector2 = Vector2()
 
+var is_entering_blackhole: bool = false
+var blackhole_location: Vector2
+var initial_blackhole_suck_location: Vector2
+
 # This function should use gme time velocity and is passed in game time delta
 func _move_and_slide(delta: float) -> void:
 	move_and_slide()
@@ -48,15 +52,26 @@ func _physics_process(delta: float) -> void:
 	if !maintain_constant_time:
 		tm /= player_time_mult
 	var real_delta = delta * tm
-	_custom_physics_process(real_delta)
 	
-	add_force(local_gravity_accel)
+	if is_entering_blackhole:
+		var bdelta = blackhole_location - global_position
+		real_velocity = (bdelta).normalized() * 100
+		
+		var total_dist = (initial_blackhole_suck_location - blackhole_location).length()
+		var t = bdelta.length() / total_dist
+		scale = t * Vector2(1,1) + (1-t) * Vector2(0.001, 0.001)
+		
+		if bdelta.length() < 10:
+			queue_free()
+	else:
+		_custom_physics_process(real_delta)
+		add_force(local_gravity_accel)
 	
-	var real_acceleration = _total_real_force
-	real_velocity += real_acceleration * real_delta
-	
-	var real_angular_acceleration = _total_real_torque
-	real_angular_velocity += real_angular_acceleration * real_delta
+		var real_acceleration = _total_real_force
+		real_velocity += real_acceleration * real_delta
+		
+		var real_angular_acceleration = _total_real_torque
+		real_angular_velocity += real_angular_acceleration * real_delta
 	
 	rotation += real_angular_velocity * real_delta
 	velocity = real_velocity * tm
@@ -93,3 +108,10 @@ func add_torque(torque: float) -> void:
 
 func current_forward() -> Vector2:
 	return get_global_transform().basis_xform(Vector2(0, -1))
+
+func enter_blackhole(at: Vector2) -> void:
+	if is_entering_blackhole:
+		return
+	is_entering_blackhole = true
+	blackhole_location = at
+	initial_blackhole_suck_location = global_position

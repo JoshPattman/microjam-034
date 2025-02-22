@@ -1,12 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfoodxxm4cg58"]
+[gd_scene load_steps=5 format=3 uid="uid://bp5dqvmqobuph"]
 
 [ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_nhp80"]
 [ext_resource type="Texture2D" uid="uid://b15ewfavom2mn" path="res://sprites/blackhole001.png" id="2_2fgl8"]
+[ext_resource type="Script" uid="uid://43pj2c80awim" path="res://game_objects/black_hole.gd" id="3_dy8lm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjxyd"]
+radius = 47.3814
 
 [node name="Blackhole" type="Node2D"]
 script = ExtResource("1_nhp80")
 metadata/_custom_type_script = "uid://vjj0eerp052v"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
 texture_filter = 1
+scale = Vector2(3, 3)
 texture = ExtResource("2_2fgl8")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_dy8lm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_cjxyd")
