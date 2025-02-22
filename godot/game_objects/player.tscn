@@ -28,7 +28,7 @@ position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_a4hy7")
 
 [node name="AsteroidSpawn" type="Node2D" parent="."]
-position = Vector2(427, 343)
+position = Vector2(327, 238)
 script = ExtResource("4_7o085")
 
 [node name="AsteroidSpawn2" type="Node2D" parent="."]
