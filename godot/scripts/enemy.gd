@@ -46,14 +46,21 @@ func _custom_process(delta: float) -> void:
 	if current_target != null:
 		if is_kamikazee:
 			if (global_position - current_target.global_position).length() < kamikazee_range:
-				var exp = kamikazee_explosion.instantiate()
-				if exp is Node2D:
-					exp.global_position = global_position
-					exp.scale *= 3
-				add_sibling(exp)
-				if current_target is Player:
-					current_target.blow_up()
-				queue_free()
+				blow_up(true)
+
+func blow_up(damage_target:bool = false):
+	var exp = kamikazee_explosion.instantiate()
+	if exp is Node2D:
+		exp.global_position = global_position
+		if damage_target:
+			exp.scale *= 3
+		else:
+			exp.scale *= 2
+	add_sibling(exp)
+	if damage_target:
+		if current_target is Player:
+			current_target.blow_up()
+	queue_free()
 
 func _custom_physics_process(delta: float) -> void:
 	if target_direction == Vector2():
