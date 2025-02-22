@@ -12,6 +12,13 @@ class_name Player
 @export var linear_drag_amount: float = 5
 @export var angular_drag_amount: float = 2.5
 
+var is_boost: bool = false:
+	set(new):
+		if new:
+			max_accel = max_accel * 2.0
+		else:
+			max_accel = max_accel / 2.0
+
 func _ready() -> void:
 	add_to_group("player")
 
@@ -30,6 +37,10 @@ func _custom_physics_process(delta: float) -> void:
 		rotater += 1
 	if Input.is_action_pressed("player_break", true):
 		breaker = 1
+	if Input.is_action_just_pressed("player_boost", true):
+		is_boost = true
+	if Input.is_action_just_released("player_boost", true):
+		is_boost = false
 		
 	var linear_drag_val = linear_drag_amount * linear_drag.sample(real_velocity.length() / linear_drag_max_speed)
 	var linear_break_val = breaker * max_linear_breaker_power
