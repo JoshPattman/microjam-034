@@ -13,6 +13,9 @@ var resource_asteroid_scene = preload("res://game_objects/resource_asteroid.tscn
 @export var enemy_spawn_radius: float = 50
 var time_since_last_enemy: float = 0.0
 
+@export var shooter_prefab: PackedScene
+@export var bouncer_prefab: PackedScene
+
 var player_resources: float = 0.0:
 	set(new):
 		$PlayerCamera/UI/Resources/Label.text = str(new)
@@ -90,4 +93,16 @@ func _get_random_asteroid_spawn_loc() -> Vector2:
 	return all_spawn_locations[randi_range(0, len(all_spawn_locations)-1)].global_position
 
 func _handle_placing() -> void:
-	pass
+	if Input.is_action_just_pressed("player_place_shooter") && player_resources >= 5:
+		_place(shooter_prefab)
+		player_resources -= 5
+	if Input.is_action_just_pressed("player_place_bouncer") && player_resources >= 3:
+		_place(bouncer_prefab)
+		player_resources -= 3
+
+func _place(tower: PackedScene) -> Node2D:
+	var player: Player = get_tree().get_first_node_in_group("player")
+	var ins: Node2D = tower.instantiate()
+	ins.global_position = player.global_position
+	add_child(ins)
+	return null

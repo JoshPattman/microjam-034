@@ -91,4 +91,5 @@ sprite_frames = SubResource("SpriteFrames_ynohc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1eu3y")
+volume_db = -21.427
 autoplay = true
