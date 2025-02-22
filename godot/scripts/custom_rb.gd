@@ -7,12 +7,10 @@ func _ready() -> void:
 	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _physics_process(delta: float) -> void:
-	pass
+	velocity = Vector2(500, 0)
+	move_and_slide()
+
 
 func calculate_time_multiplier() -> float:
 	var tds = get_tree().get_nodes_in_group("time_dialaters")
