@@ -136,19 +136,7 @@ text = "1.0"
 [node name="Node" type="Node" parent="."]
 
 [node name="Blackhole" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(2488, -2270)
-
-[node name="Blackhole2" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(3314, -191)
-
-[node name="Blackhole3" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(1626, 1451)
-
-[node name="Blackhole4" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(-1277, 772)
-
-[node name="Blackhole5" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(-1686, -1550)
+position = Vector2(-1, -1113)
 
 [node name="Whitehole" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(1183, -936)
+position = Vector2(-8, 1398)
