@@ -9,7 +9,10 @@ point_count = 2
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a4hy7")
+max_accel = 30000
+max_angular_accel = 600
 linear_drag = SubResource("Curve_0rdlk")
+angular_drag_amount = 100.0
 metadata/_custom_type_script = "uid://df8g3j31hj85f"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
