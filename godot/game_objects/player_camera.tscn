@@ -1,7 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://8u76lxidkpfp"]
+[gd_scene load_steps=3 format=3 uid="uid://bgxbuktm1jydc"]
 
 [ext_resource type="Script" uid="uid://blhinorgbq0b0" path="res://scripts/player_camera.gd" id="1_qupu1"]
+[ext_resource type="Script" path="res://game_objects/asteroid_spawn.gd" id="2_wpj71"]
 
 [node name="PlayerCamera" type="Camera2D"]
 script = ExtResource("1_qupu1")
 metadata/_custom_type_script = "uid://blhinorgbq0b0"
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Spawners"]
+position = Vector2(-258, -384)
+script = ExtResource("2_wpj71")
+
+[node name="Node2D2" type="Node2D" parent="Spawners"]
+position = Vector2(586, -155)
+script = ExtResource("2_wpj71")
+
+[node name="Node2D3" type="Node2D" parent="Spawners"]
+position = Vector2(400, 362)
+script = ExtResource("2_wpj71")
+
+[node name="Node2D4" type="Node2D" parent="Spawners"]
+position = Vector2(-696, 139)
+script = ExtResource("2_wpj71")
+
+[node name="Node2D5" type="Node2D" parent="Spawners"]
+position = Vector2(-355, 404)
+script = ExtResource("2_wpj71")
+
+[node name="Node2D6" type="Node2D" parent="Spawners"]
+position = Vector2(616, 124)
+script = ExtResource("2_wpj71")
+
+[node name="Node2D7" type="Node2D" parent="Spawners"]
+position = Vector2(250, -389)
+script = ExtResource("2_wpj71")
+
+[node name="Node2D8" type="Node2D" parent="Spawners"]
+position = Vector2(-676, -188)
+script = ExtResource("2_wpj71")
