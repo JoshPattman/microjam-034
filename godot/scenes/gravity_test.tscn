@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://blbk0rvybk0ei"]
 
-[ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_y8n66"]
+[ext_resource type="Script" uid="uid://ba1uvqfpmf3gb" path="res://scripts/time_dialater.gd" id="1_y8n66"]
 [ext_resource type="Texture2D" uid="uid://doepmpsfk2b6m" path="res://icon.svg" id="2_we4mt"]
 [ext_resource type="Script" uid="uid://c43b3q2t5uqaw" path="res://scripts/custom_rb.gd" id="3_0rdlk"]
 [ext_resource type="Texture2D" uid="uid://cbg0jrdsajskn" path="res://sprites/ship.png" id="4_vcgwd"]
