@@ -42,6 +42,8 @@ func _process(delta: float) -> void:
 		$PlayerCamera/UI/TimeDilation/Amount.text = "%.3f" % CustomRigidbody2D.get_global_dt_mult()
 	else:
 		$PlayerCamera/UI/TimeDilation.visible = false
+	
+	_handle_placing()
 
 
 func _spawn_enemy():
@@ -86,3 +88,6 @@ func _get_random_asteroid_spawn_loc() -> Vector2:
 	if len(all_spawn_locations) == 0:
 		return Vector2()
 	return all_spawn_locations[randi_range(0, len(all_spawn_locations)-1)].global_position
+
+func _handle_placing() -> void:
+	pass
