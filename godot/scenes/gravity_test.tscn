@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://blbk0rvybk0ei"]
+[gd_scene load_steps=7 format=3 uid="uid://blbk0rvybk0ei"]
 
 [ext_resource type="Script" uid="uid://ba1uvqfpmf3gb" path="res://scripts/time_dialater.gd" id="1_y8n66"]
 [ext_resource type="Texture2D" uid="uid://doepmpsfk2b6m" path="res://icon.svg" id="2_we4mt"]
-[ext_resource type="Script" uid="uid://c43b3q2t5uqaw" path="res://scripts/custom_rb.gd" id="3_0rdlk"]
+[ext_resource type="Script" uid="uid://df8g3j31hj85f" path="res://scripts/player.gd" id="3_0rdlk"]
 [ext_resource type="Texture2D" uid="uid://cbg0jrdsajskn" path="res://sprites/ship.png" id="4_vcgwd"]
+[ext_resource type="Script" uid="uid://blhinorgbq0b0" path="res://scripts/player_camera.gd" id="5_17vyx"]
+
+[sub_resource type="Curve" id="Curve_0rdlk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 3.19298, 0.0, 0, 0]
+point_count = 2
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,10 +33,15 @@ script = ExtResource("1_y8n66")
 [node name="Sprite2D" type="Sprite2D" parent="TimeDialater3"]
 texture = ExtResource("2_we4mt")
 
-[node name="CustomRigidbody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(27, 151)
 script = ExtResource("3_0rdlk")
-metadata/_custom_type_script = "uid://c43b3q2t5uqaw"
+linear_drag = SubResource("Curve_0rdlk")
+metadata/_custom_type_script = "uid://df8g3j31hj85f"
 
-[node name="Sprite2D" type="Sprite2D" parent="CustomRigidbody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("4_vcgwd")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+script = ExtResource("5_17vyx")
+metadata/_custom_type_script = "uid://blhinorgbq0b0"

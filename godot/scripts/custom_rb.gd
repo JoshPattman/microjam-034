@@ -8,6 +8,8 @@ var real_angular_velocity: float = 0.0
 var _total_real_force: Vector2 = Vector2()
 var _total_real_torque: float = 0.0
 
+var last_time_scale = 1.0
+
 # Override this to do physics
 func _custom_physics_process(delta: float) -> void:
 	pass
@@ -25,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_total_real_force = Vector2()
 	_total_real_torque = 0
+	last_time_scale = tm
 
 
 func calculate_time_multiplier() -> float:
