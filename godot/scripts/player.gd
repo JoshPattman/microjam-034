@@ -14,6 +14,8 @@ class_name Player
 
 @export var explosion: PackedScene
 
+@export var collection_radius_sqaure: float = 10000
+
 var is_boost: bool = false:
 	set(new):
 		if new:
@@ -54,6 +56,8 @@ func _custom_physics_process(delta: float) -> void:
 		is_boost = true
 	if Input.is_action_just_released("player_boost", true):
 		is_boost = false
+	if Input.is_action_just_pressed("player_collect", true):
+		handle_collection()
 		
 	var linear_drag_val = linear_drag_amount * linear_drag.sample(real_velocity.length() / linear_drag_max_speed)
 	var linear_break_val = breaker * max_linear_breaker_power
@@ -64,3 +68,23 @@ func _custom_physics_process(delta: float) -> void:
 	
 	add_force(-linear_total_slowdown * real_velocity)
 	add_torque(-breaker * real_angular_velocity * max_angular_breaker_power - real_angular_velocity * angular_drag_amount)
+	
+func handle_collection():
+	var resources: Array = get_tree().get_nodes_in_group("resources")
+	
+	print("resource nodes: ", resources)
+		
+	if resources.is_empty():
+		return
+	
+	var closest_distance: float = INF
+	var closest_resource: ResourceAsteroid = null
+	for r: ResourceAsteroid in resources:
+		var dist = r.transform.origin.distance_squared_to(self.transform.origin)
+		if dist < closest_distance:
+			closest_distance  = dist
+			closest_resource = r
+			
+	if closest_distance < collection_radius_sqaure:
+		closest_resource.mine(1.0)
+		
