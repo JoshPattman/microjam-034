@@ -46,6 +46,7 @@ _data = {
 [node name="Station" type="Sprite2D"]
 z_index = 100
 texture_filter = 1
+scale = Vector2(3, 3)
 texture = ExtResource("1_phur1")
 hframes = 3
 script = ExtResource("2_26n74")
