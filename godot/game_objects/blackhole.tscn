@@ -9,6 +9,8 @@ radius = 47.3814
 
 [node name="Blackhole" type="Node2D"]
 script = ExtResource("1_nhp80")
+slow_mult = 0.15
+slow_range = 600
 metadata/_custom_type_script = "uid://vjj0eerp052v"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
