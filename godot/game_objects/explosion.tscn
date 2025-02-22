@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://fflvvbkq6cur"]
+[gd_scene load_steps=15 format=3 uid="uid://fflvvbkq6cur"]
 
 [ext_resource type="Texture2D" uid="uid://b3myg6yq4sjea" path="res://sprites/boom.png" id="1_11h51"]
-[ext_resource type="Script" path="res://game_objects/explosion.gd" id="1_mpahj"]
+[ext_resource type="Script" uid="uid://fg6vlahu3one" path="res://scripts/explosion.gd" id="1_mpahj"]
+[ext_resource type="AudioStream" uid="uid://bifue1w4wt58d" path="res://sounds/8bit_explosion.wav" id="3_1eu3y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mpahj"]
 atlas = ExtResource("1_11h51")
@@ -87,3 +88,7 @@ script = ExtResource("1_mpahj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ynohc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1eu3y")
+autoplay = true
