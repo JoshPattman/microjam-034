@@ -59,3 +59,4 @@ autoplay = "rotate"
 
 [node name="Turret" type="Node2D" parent="."]
 script = ExtResource("4_51j1b")
+add_to_targets = false
