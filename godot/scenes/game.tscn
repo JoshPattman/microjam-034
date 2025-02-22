@@ -23,6 +23,7 @@ metadata/_custom_type_script = "uid://os1jkm3q84or"
 [node name="Game" type="Node2D"]
 script = ExtResource("1_iywne")
 enemy_spawn_groups = Array[ExtResource("2_0tnpc")]([SubResource("Resource_vtaks"), SubResource("Resource_kvpfn")])
+max_enemies = 0
 
 [node name="Station" parent="." instance=ExtResource("2_lbhrr")]
 scale = Vector2(3, 3)
@@ -81,19 +82,22 @@ stretch_mode = 1
 [node name="Node" type="Node" parent="."]
 
 [node name="Blackhole" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(636, -25)
+position = Vector2(42, -260)
 
 [node name="Blackhole2" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(364, 517)
+position = Vector2(3314, -191)
 
 [node name="Blackhole3" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(-492, 412)
+position = Vector2(1626, 1451)
 
 [node name="Blackhole4" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(-712, -56)
+position = Vector2(-1277, 772)
 
 [node name="Blackhole5" parent="Node" instance=ExtResource("6_p57ef")]
-position = Vector2(-340, -594)
+position = Vector2(-1686, -1550)
 
-[node name="Whitehole" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(231, -286)
+[node name="Whitehole" parent="Node" instance=ExtResource("7_u5sy4")]
+position = Vector2(-164, -2238)
+
+[node name="Whitehole2" parent="Node" instance=ExtResource("7_u5sy4")]
+position = Vector2(-451, 2313)

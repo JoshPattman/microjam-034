@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbqhnh0lw7fmk"]
+[gd_scene load_steps=9 format=3 uid="uid://bbqhnh0lw7fmk"]
 
 [ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_iib8q"]
 [ext_resource type="Texture2D" uid="uid://b15ewfavom2mn" path="res://sprites/blackhole001.png" id="2_7ipbn"]
@@ -7,6 +7,25 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjxyd"]
 radius = 47.3814
+
+[sub_resource type="Curve" id="Curve_iib8q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253205, 1), 0.0, 0.0, 0, 0, Vector2(0.817308, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_enolj"]
+curve = SubResource("Curve_iib8q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ipbn"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(600, 600, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 13.71
+radial_accel_max = 44.57
+scale_min = 0.4
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_enolj")
 
 [node name="Whitehole" type="Node2D"]
 script = ExtResource("1_iib8q")
@@ -32,3 +51,9 @@ shape = SubResource("CircleShape2D_cjxyd")
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("4_u03if")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 80
+lifetime = 2.0
+trail_lifetime = 0.19
+process_material = SubResource("ParticleProcessMaterial_7ipbn")
