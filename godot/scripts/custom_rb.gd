@@ -43,3 +43,6 @@ func add_force(force: Vector2) -> void:
 
 func add_torque(torque: float) -> void:
 	_total_real_torque += torque
+
+func current_forward() -> Vector2:
+	return get_global_transform().basis_xform(Vector2(0, -1))
