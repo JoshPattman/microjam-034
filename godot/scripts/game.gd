@@ -7,12 +7,27 @@ var time_since_last_asteroid: float = 0.0
 
 var resource_asteroid_scene = preload("res://game_objects/resource_asteroid.tscn")
 
+<<<<<<< HEAD
 func _get_random_asteroid_spawn_loc() -> Vector2:
 	var all_spawn_locations = get_tree().get_nodes_in_group("asteroid_spawner")
 	if len(all_spawn_locations) == 0:
 		return Vector2()
 	return all_spawn_locations[randi_range(0, len(all_spawn_locations)-1)].global_position
 	
+=======
+var player_resources: float = 0.0:
+	set(new):
+		$PlayerCamera/UI/Resources/Label.text = str(new)
+		player_resources = new
+
+func _ready() -> void:
+	$Station.ship_spawned.connect(
+		func(ship):
+			ship.mined.connect(func(amount): player_resources += amount)
+			ship.died.connect(func(): player_resources = 0.0)
+	)
+
+>>>>>>> bf56437c96a2de3856f6325ee5f3d83e0aa0ddf0
 func spawn_asteroid():
 	var instance = asteroid_scene.instantiate()
 	$Asteroids.add_child(instance)
