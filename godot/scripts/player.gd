@@ -2,15 +2,15 @@ extends CustomRigidbody2D
 
 class_name Player
 
-@export var max_accel = 35000
-@export var max_angular_accel = 800
+@export var max_accel = 500
+@export var max_angular_accel = 25
 @export var max_linear_breaker_power = 100
 @export var max_angular_breaker_power = 50
 
 @export var linear_drag_max_speed = 200
 @export var linear_drag: Curve
-@export var linear_drag_amount: float = 50
-@export var angular_drag_amount: float = 50
+@export var linear_drag_amount: float = 5
+@export var angular_drag_amount: float = 2.5
 
 var is_boost: bool = false:
 	set(new):

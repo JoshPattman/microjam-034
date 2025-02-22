@@ -19,6 +19,9 @@ static var player_time_mult: float = 1.0
 func _custom_physics_process(delta: float) -> void:
 	pass
 
+func _custom_process(delta: float) -> void:
+	pass
+
 func _process(delta: float) -> void:
 	var tm = calculate_time_multiplier()
 	if maintain_constant_time:
@@ -26,20 +29,25 @@ func _process(delta: float) -> void:
 		player_time_mult = tm
 	else:
 		local_time_mult = tm
+	_custom_process(delta)
 
 func _physics_process(delta: float) -> void:
 	var tm = local_time_mult
 	if !maintain_constant_time:
 		tm /= player_time_mult
+	var real_delta = delta * tm
 	_custom_physics_process(delta*tm)
-	var real_acceleration = _total_real_force * delta
-	real_velocity += real_acceleration * delta
+	
+	var real_acceleration = _total_real_force
+	real_velocity += real_acceleration * real_delta
+	
+	var real_angular_acceleration = _total_real_torque
+	real_angular_velocity += real_angular_acceleration * real_delta
+	
+	rotation += real_angular_velocity * real_delta
 	velocity = real_velocity * tm
-	var real_angular_acceleration = _total_real_torque * delta
-	real_angular_velocity += real_angular_acceleration * delta
-	var angular_velocity = real_angular_velocity * tm
-	rotation += angular_velocity * delta
 	move_and_slide()
+	
 	_total_real_force = Vector2()
 	_total_real_torque = 0
 	last_time_scale = tm
