@@ -1,8 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://rm50arymrac8"]
+[gd_scene load_steps=8 format=3 uid="uid://rm50arymrac8"]
 
 [ext_resource type="Texture2D" uid="uid://cx68l1ieiqn" path="res://sprites/station001.png" id="1_phur1"]
 [ext_resource type="Script" uid="uid://dv5qup0e7c5x4" path="res://game_objects/station.gd" id="2_26n74"]
 [ext_resource type="PackedScene" uid="uid://c8jr51j6ge7n0" path="res://game_objects/player.tscn" id="3_ksyti"]
+[ext_resource type="Script" uid="uid://dfaqnj6r52slx" path="res://game_objects/turret.gd" id="4_51j1b"]
+
+[sub_resource type="Animation" id="Animation_51j1b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_ksyti"]
 resource_name = "rotate"
@@ -19,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_51j1b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fms4r"]
@@ -55,3 +56,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_fms4r")
 }
 autoplay = "rotate"
+
+[node name="Turret" type="Node2D" parent="."]
+script = ExtResource("4_51j1b")
