@@ -17,11 +17,18 @@ static var player_time_mult: float = 1.0
 
 var local_gravity_accel: Vector2 = Vector2()
 
+# This function should use gme time velocity and is passed in game time delta
+func _move_and_slide(delta: float) -> void:
+	move_and_slide()
+	
 # Override this to do physics
 func _custom_physics_process(delta: float) -> void:
 	pass
 
 func _custom_process(delta: float) -> void:
+	pass
+
+func _custom_post_physics_process(delta: float) -> void:
 	pass
 
 func _process(delta: float) -> void:
@@ -41,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	if !maintain_constant_time:
 		tm /= player_time_mult
 	var real_delta = delta * tm
-	_custom_physics_process(delta*tm)
+	_custom_physics_process(real_delta)
 	
 	add_force(local_gravity_accel)
 	
@@ -53,7 +60,9 @@ func _physics_process(delta: float) -> void:
 	
 	rotation += real_angular_velocity * real_delta
 	velocity = real_velocity * tm
-	move_and_slide()
+	_move_and_slide(delta)
+	
+	_custom_post_physics_process(real_delta)
 	
 	_total_real_force = Vector2()
 	_total_real_torque = 0

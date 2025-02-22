@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8jr51j6ge7n0"]
+[gd_scene load_steps=6 format=3 uid="uid://c8jr51j6ge7n0"]
 
 [ext_resource type="Script" uid="uid://df8g3j31hj85f" path="res://scripts/player.gd" id="1_a4hy7"]
+[ext_resource type="PackedScene" uid="uid://fflvvbkq6cur" path="res://game_objects/explosion.tscn" id="2_7o085"]
 [ext_resource type="Texture2D" uid="uid://bdn0w0j4u4ui4" path="res://sprites/ship001.png" id="2_hy5qn"]
 
 [sub_resource type="Curve" id="Curve_0rdlk"]
@@ -13,6 +14,7 @@ radius = 17.0
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a4hy7")
 linear_drag = SubResource("Curve_0rdlk")
+explosion = ExtResource("2_7o085")
 maintain_constant_time = true
 metadata/_custom_type_script = "uid://df8g3j31hj85f"
 
