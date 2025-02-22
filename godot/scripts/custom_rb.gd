@@ -15,6 +15,8 @@ var last_time_scale = 1.0
 var local_time_mult: float = 1.0
 static var player_time_mult: float = 1.0
 
+var local_gravity_accel: Vector2 = Vector2()
+
 # Override this to do physics
 func _custom_physics_process(delta: float) -> void:
 	pass
@@ -29,6 +31,9 @@ func _process(delta: float) -> void:
 		player_time_mult = tm
 	else:
 		local_time_mult = tm
+	
+	local_gravity_accel = calculate_gravity_accel()
+	
 	_custom_process(delta)
 
 func _physics_process(delta: float) -> void:
@@ -37,6 +42,8 @@ func _physics_process(delta: float) -> void:
 		tm /= player_time_mult
 	var real_delta = delta * tm
 	_custom_physics_process(delta*tm)
+	
+	add_force(local_gravity_accel)
 	
 	var real_acceleration = _total_real_force
 	real_velocity += real_acceleration * real_delta
@@ -60,6 +67,14 @@ func calculate_time_multiplier() -> float:
 		if node is TimeDialater:
 			total_muliplier *= node.get_multiplier_at(position)
 	return total_muliplier
+
+func calculate_gravity_accel() -> Vector2:
+	var tds = get_tree().get_nodes_in_group("time_dialaters")
+	var total_accel = Vector2()
+	for node in tds:
+		if node is TimeDialater:
+			total_accel += node.get_acceleration_at(position)
+	return total_accel
 
 func add_force(force: Vector2) -> void:
 	_total_real_force += force
