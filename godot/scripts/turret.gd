@@ -5,7 +5,13 @@ class_name Turret
 @export var range: float = 200
 @export var shot_delay: float = 1.0
 
+@export var add_to_targets: bool = true
+
 var time_since_last_shot: float = 0.0
+
+func _ready() -> void:
+	if add_to_targets:
+		add_to_group("enemy_targets")
 
 func _process(delta: float) -> void:
 	var enemies = get_tree().get_nodes_in_group("enemies")

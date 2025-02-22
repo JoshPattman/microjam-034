@@ -60,6 +60,8 @@ func blow_up(damage_target:bool = false):
 	if damage_target:
 		if current_target is Player:
 			current_target.blow_up()
+		if current_target is Turret:
+			current_target.queue_free()
 	queue_free()
 
 func _custom_physics_process(delta: float) -> void:
