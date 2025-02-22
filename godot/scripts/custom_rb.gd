@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var tm = local_time_mult
 	if !maintain_constant_time:
-		tm *= player_time_mult
+		tm /= player_time_mult
 	_custom_physics_process(delta*tm)
 	var real_acceleration = _total_real_force * delta
 	real_velocity += real_acceleration * delta
