@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmxnrtblt0gby"]
+[gd_scene load_steps=4 format=3 uid="uid://c8jr51j6ge7n0"]
 
 [ext_resource type="Script" uid="uid://df8g3j31hj85f" path="res://scripts/player.gd" id="1_a4hy7"]
-[ext_resource type="Texture2D" uid="uid://bdn0w0j4u4ui4" path="res://sprites/ship001.png" id="2_a4hy7"]
+[ext_resource type="Texture2D" path="res://sprites/ship.png" id="2_hy5qn"]
 
 [sub_resource type="Curve" id="Curve_0rdlk"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 3.19298, 0.0, 0, 0]
@@ -13,8 +13,9 @@ max_accel = 30000
 max_angular_accel = 600
 linear_drag = SubResource("Curve_0rdlk")
 angular_drag_amount = 100.0
+maintain_constant_time = true
 metadata/_custom_type_script = "uid://df8g3j31hj85f"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
-texture = ExtResource("2_a4hy7")
+texture = ExtResource("2_hy5qn")
