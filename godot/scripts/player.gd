@@ -23,6 +23,7 @@ var is_boost: bool = false:
 
 func _ready() -> void:
 	add_to_group("player")
+	add_to_group("enemy_targets")
 
 func _move_and_slide(delta: float) -> void:
 	var col = move_and_collide(delta * velocity)

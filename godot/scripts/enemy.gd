@@ -12,6 +12,10 @@ var target_direction: Vector2
 @export var k_targeting = 0.5
 @export var k_avoiding = 0.5
 
+@export var is_kamikazee: bool = false
+@export var kamikazee_range: float = 20
+@export var kamikazee_explosion: PackedScene
+
 func _ready() -> void:
 	add_to_group("enemies")
 
@@ -36,6 +40,16 @@ func _custom_process(delta: float) -> void:
 	target_direction = d_target*k_targeting + d_avoid*k_avoiding
 	if target_direction.length() > 1:
 		target_direction = target_direction.normalized()
+	
+	if current_target != null:
+		if is_kamikazee:
+			if (global_position - current_target.global_position).length() < kamikazee_range:
+				var exp = kamikazee_explosion.instantiate()
+				if exp is Node2D:
+					exp.global_position = global_position
+					exp.scale *= 3
+				add_sibling(exp)
+				queue_free()
 
 func _custom_physics_process(delta: float) -> void:
 	if target_direction == Vector2():
@@ -46,4 +60,13 @@ func _custom_physics_process(delta: float) -> void:
 	real_angular_velocity = -angle_to_target * angular_speed
 
 func get_next_target() -> Node2D:
-	return get_tree().get_first_node_in_group("player")
+	var targets = get_tree().get_nodes_in_group("enemy_targets")
+	var closest_target: Node2D
+	var closest_dist: float = 99999999999.0
+	for t in targets:
+		if t is Node2D:
+			var dist = (t.global_position - global_position).length()
+			if dist < closest_dist:
+				closest_dist = dist
+				closest_target = t
+	return closest_target
