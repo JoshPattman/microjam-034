@@ -12,7 +12,6 @@
 [node name="TimeDialater" type="Node2D" parent="."]
 position = Vector2(400, 400)
 script = ExtResource("1_y8n66")
-multiplier = 0.25
 
 [node name="Sprite2D" type="Sprite2D" parent="TimeDialater"]
 texture = ExtResource("2_we4mt")
@@ -20,7 +19,6 @@ texture = ExtResource("2_we4mt")
 [node name="TimeDialater2" type="Node2D" parent="."]
 position = Vector2(886, 152)
 script = ExtResource("1_y8n66")
-multiplier = 0.25
 
 [node name="Sprite2D" type="Sprite2D" parent="TimeDialater2"]
 texture = ExtResource("2_we4mt")
@@ -28,7 +26,6 @@ texture = ExtResource("2_we4mt")
 [node name="TimeDialater3" type="Node2D" parent="."]
 position = Vector2(228, 152)
 script = ExtResource("1_y8n66")
-multiplier = 0.25
 
 [node name="Sprite2D" type="Sprite2D" parent="TimeDialater3"]
 texture = ExtResource("2_we4mt")
