@@ -52,11 +52,13 @@ func _spawn_enemy():
 		print("Spawned ", ins.name)
 
 func _spawn_initial_asteroids() -> void:
-	var cell_size = 40
-	for x in range(-2000, 2000, cell_size):
-		for y in range(-1000, 1000, cell_size):
-			if randf() > 0.99:
-				_spawn_asteroid(Vector2(x, y), randf()>0.8, Vector2())
+	for i in range(8):
+		var cx = randf_range(-2500, 2500)
+		var cy = randf_range(-2500, 2500)
+		for j in range(15):
+			var ox = randf_range(-250, 250)
+			var oy = randf_range(-250, 250)
+			_spawn_asteroid(Vector2(cx+ox, cy+oy), randf()>0.8, Vector2())
 
 func _spawn_meteroite() -> void:
 	_spawn_asteroid(_get_random_asteroid_spawn_loc(), randf()>0.8, Utils.get_random_unit_vector() * 30)
