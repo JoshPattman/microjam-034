@@ -3,14 +3,14 @@ extends CustomRigidbody2D
 class_name Enemy
 
 var current_target: Node2D
-var speed: float = 5000
-var angular_speed: float = 2
-var drag: float = 0.5
+@export var speed: float = 200
+@export var angular_speed: float = 5
+@export var drag: float = 0.01
 
 func _ready() -> void:
 	add_to_group("enemies")
 
-func _process(delta: float) -> void:
+func _custom_process(delta: float) -> void:
 	if current_target == null:
 		current_target = get_next_target()
 
