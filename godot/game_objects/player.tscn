@@ -50,6 +50,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a4hy7")
+max_linear_breaker_power = 2
 linear_drag = SubResource("Curve_0rdlk")
 explosion = ExtResource("2_7o085")
 maintain_constant_time = true
