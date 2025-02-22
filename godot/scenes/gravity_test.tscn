@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_y8n66"]
 [ext_resource type="Texture2D" uid="uid://doepmpsfk2b6m" path="res://icon.svg" id="2_we4mt"]
 [ext_resource type="PackedScene" uid="uid://c8jr51j6ge7n0" path="res://game_objects/player.tscn" id="3_0rdlk"]
-[ext_resource type="PackedScene" uid="uid://8u76lxidkpfp" path="res://game_objects/player_camera.tscn" id="4_17vyx"]
+[ext_resource type="PackedScene" path="res://game_objects/player_camera.tscn" id="4_17vyx"]
 [ext_resource type="Texture2D" uid="uid://bdn0w0j4u4ui4" path="res://sprites/ship001.png" id="4_vcgwd"]
 [ext_resource type="Script" uid="uid://ccw4ax373njdf" path="res://scripts/enemy.gd" id="5_17vyx"]
 
