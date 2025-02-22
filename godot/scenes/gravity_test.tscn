@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://blbk0rvybk0ei"]
+[gd_scene load_steps=7 format=3 uid="uid://blbk0rvybk0ei"]
 
 [ext_resource type="Script" uid="uid://ba1uvqfpmf3gb" path="res://scripts/time_dialater.gd" id="1_y8n66"]
 [ext_resource type="Texture2D" uid="uid://doepmpsfk2b6m" path="res://icon.svg" id="2_we4mt"]
-[ext_resource type="PackedScene" uid="uid://bmxnrtblt0gby" path="res://game_objects/player.tscn" id="3_0rdlk"]
-[ext_resource type="PackedScene" path="res://game_objects/player_camera.tscn" id="4_17vyx"]
+[ext_resource type="PackedScene" uid="uid://c8jr51j6ge7n0" path="res://game_objects/player.tscn" id="3_0rdlk"]
+[ext_resource type="PackedScene" uid="uid://8u76lxidkpfp" path="res://game_objects/player_camera.tscn" id="4_17vyx"]
+[ext_resource type="Texture2D" uid="uid://cbg0jrdsajskn" path="res://sprites/ship.png" id="4_vcgwd"]
+[ext_resource type="Script" uid="uid://ccw4ax373njdf" path="res://scripts/enemy.gd" id="5_17vyx"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -32,3 +34,10 @@ texture = ExtResource("2_we4mt")
 position = Vector2(27, 151)
 
 [node name="PlayerCamera" parent="." instance=ExtResource("4_17vyx")]
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+script = ExtResource("5_17vyx")
+metadata/_custom_type_script = "uid://ccw4ax373njdf"
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("4_vcgwd")
