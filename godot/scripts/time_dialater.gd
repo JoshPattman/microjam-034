@@ -1,6 +1,5 @@
-extends Node2D
+class_name TimeDialater extends Node2D
 
-class_name TimeDialater
 
 @export var multiplier = 0.5
 @export var range = 100
