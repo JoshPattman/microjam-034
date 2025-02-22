@@ -51,3 +51,7 @@ func _custom_physics_process(delta: float) -> void:
 	
 	add_force(-linear_total_slowdown * real_velocity)
 	add_torque(-breaker * real_angular_velocity * max_angular_breaker_power - real_angular_velocity * angular_drag_amount)
+	
+	for i in range(get_slide_collision_count()):
+		var col = get_slide_collision(i)
+		queue_free()
