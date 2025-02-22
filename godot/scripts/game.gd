@@ -36,6 +36,13 @@ func _process(delta: float) -> void:
 	if time_since_last_enemy > enemy_frequency:
 		_spawn_enemy()
 		time_since_last_enemy = 0
+	
+	if !is_equal_approx(1.0, CustomRigidbody2D.get_global_dt_mult()):
+		$PlayerCamera/UI/TimeDilation.visible = true
+		$PlayerCamera/UI/TimeDilation/Amount.text = "%.3f" % CustomRigidbody2D.get_global_dt_mult()
+	else:
+		$PlayerCamera/UI/TimeDilation.visible = false
+
 
 func _spawn_enemy():
 	if len(get_tree().get_nodes_in_group("enemies")) >= max_enemies:
