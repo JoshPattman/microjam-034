@@ -1,6 +1,5 @@
-extends Node2D
+class_name TimeDialater extends Node2D
 
-class_name TimeDialater
 
 @export var slow_mult = 0.5
 @export var slow_range = 100
