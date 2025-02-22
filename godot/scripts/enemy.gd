@@ -13,7 +13,7 @@ var target_direction: Vector2
 @export var k_avoiding = 0.5
 
 @export var is_kamikazee: bool = false
-@export var kamikazee_range: float = 20
+@export var kamikazee_range: float = 40
 @export var kamikazee_explosion: PackedScene
 
 func _ready() -> void:
