@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Turret
+
 @export var range: float = 200
 @export var shot_delay: float = 1.0
 

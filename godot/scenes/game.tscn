@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=4 uid="uid://8w4qxf6yifmj"]
+[gd_scene load_steps=16 format=4 uid="uid://8w4qxf6yifmj"]
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
 [ext_resource type="Script" path="res://scripts/spawn_group.gd" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://rm50arymrac8" path="res://game_objects/station.tscn" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://7pkivl6g6mek" path="res://game_objects/turret_shooter.tscn" id="4_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://bgxbuktm1jydc" path="res://game_objects/player_camera.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bnv7i55ocbrob" path="res://game_objects/turret_bouncer.tscn" id="5_dinhu"]
 [ext_resource type="Texture2D" uid="uid://dob7ofabtinsm" path="res://sprites/minerals001.png" id="5_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://bp5dqvmqobuph" path="res://game_objects/blackhole.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://dvou36u6k0wdw" path="res://game_objects/enemy_1.tscn" id="6_u5sy4"]
@@ -37,9 +39,12 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_ca42v")
 
 [node name="Game" type="Node2D"]
+position = Vector2(0, -1)
 script = ExtResource("1_iywne")
 enemy_spawn_groups = Array[ExtResource("2_0tnpc")]([SubResource("Resource_vtaks"), SubResource("Resource_kvpfn")])
-max_enemies = 0
+max_enemies = 5
+shooter_prefab = ExtResource("4_kvpfn")
+bouncer_prefab = ExtResource("5_dinhu")
 
 [node name="Station" parent="." instance=ExtResource("2_lbhrr")]
 scale = Vector2(3, 3)
