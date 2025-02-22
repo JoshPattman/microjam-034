@@ -38,7 +38,7 @@ func spawn_asteroid():
 	instance.global_position = _get_random_asteroid_spawn_loc()
 
 func spawn_enemy():
-	if len(get_tree().get_nodes_in_group("enemies")) > max_enemies:
+	if len(get_tree().get_nodes_in_group("enemies")) >= max_enemies:
 		return
 	var group = enemy_spawn_groups[randi_range(0, len(enemy_spawn_groups)-1)]
 	var loc = _get_random_asteroid_spawn_loc()
