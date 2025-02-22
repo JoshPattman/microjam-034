@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvou36u6k0wdw"]
+[gd_scene load_steps=8 format=3 uid="uid://dvou36u6k0wdw"]
 
 [ext_resource type="Script" uid="uid://ccw4ax373njdf" path="res://scripts/enemy.gd" id="1_0o6d6"]
 [ext_resource type="Texture2D" uid="uid://bdn0w0j4u4ui4" path="res://sprites/ship001.png" id="2_ettaq"]
@@ -6,6 +6,43 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0o6d6"]
 radius = 17.0
+
+[sub_resource type="Animation" id="Animation_ettaq"]
+resource_name = "thrust"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_k1174"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hc57"]
+_data = {
+&"RESET": SubResource("Animation_k1174"),
+&"thrust": SubResource("Animation_ettaq")
+}
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_0o6d6")
@@ -18,6 +55,13 @@ metadata/_custom_type_script = "uid://ccw4ax373njdf"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ettaq")
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0o6d6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0hc57")
+}
+autoplay = "thrust"
