@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_iib8q"]
 [ext_resource type="Texture2D" uid="uid://b15ewfavom2mn" path="res://sprites/blackhole001.png" id="2_7ipbn"]
-[ext_resource type="Script" uid="uid://43pj2c80awim" path="res://game_objects/black_hole.gd" id="3_d1qk7"]
-[ext_resource type="Script" uid="uid://pbr77i1ed5mv" path="res://game_objects/enemy_avoid.gd" id="4_u03if"]
+[ext_resource type="Script" uid="uid://43pj2c80awim" path="res://scripts/black_hole.gd" id="3_d1qk7"]
+[ext_resource type="Script" uid="uid://pbr77i1ed5mv" path="res://scripts/enemy_avoid.gd" id="4_u03if"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjxyd"]
 radius = 47.3814
