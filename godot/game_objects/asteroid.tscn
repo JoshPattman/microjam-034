@@ -8,6 +8,7 @@ radius = 16.0
 
 [node name="Asteroid" type="CharacterBody2D"]
 script = ExtResource("1_qx4ml")
+speed = 50.0
 metadata/_custom_type_script = "uid://c43b3q2t5uqaw"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
