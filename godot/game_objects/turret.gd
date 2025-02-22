@@ -1,0 +1,22 @@
+extends Node2D
+
+@export var range: float = 200
+@export var shot_delay: float = 1.0
+
+var time_since_last_shot: float = 0.0
+
+func _process(delta: float) -> void:
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	var closest_enemy: Enemy
+	var closest_dist_squared: float = 9999999.9
+	for e in enemies:
+		if e is Enemy:
+			var dist = e.global_position.distance_squared_to(global_position)
+			if dist < closest_dist_squared:
+				closest_dist_squared = dist
+				closest_enemy = e
+	if closest_dist_squared < range*range:
+		if time_since_last_shot > shot_delay:
+			time_since_last_shot = 0.0
+			closest_enemy.blow_up()
+	time_since_last_shot += delta * CustomRigidbody2D.get_global_dt_mult()

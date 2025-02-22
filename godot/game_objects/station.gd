@@ -15,3 +15,4 @@ func _process(delta: float) -> void:
 		ship_spawned.emit(current_ship)
 		current_ship.position = position
 		add_sibling(current_ship)
+	$AnimationPlayer.speed_scale = CustomRigidbody2D.get_global_dt_mult()
