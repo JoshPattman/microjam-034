@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbqhnh0lw7fmk"]
+
+[ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_iib8q"]
+[ext_resource type="Texture2D" uid="uid://b15ewfavom2mn" path="res://sprites/blackhole001.png" id="2_7ipbn"]
+[ext_resource type="Script" uid="uid://43pj2c80awim" path="res://game_objects/black_hole.gd" id="3_d1qk7"]
+[ext_resource type="Script" uid="uid://pbr77i1ed5mv" path="res://game_objects/enemy_avoid.gd" id="4_u03if"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjxyd"]
+radius = 47.3814
+
+[node name="Whitehole" type="Node2D"]
+script = ExtResource("1_iib8q")
+slow_mult = 10.0
+slow_range = 600
+pull_force = -400.0
+metadata/_custom_type_script = "uid://vjj0eerp052v"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.643857, 0.634189, 0, 1)
+z_index = -1
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_7ipbn")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_d1qk7")
+allow_suck = false
+add_to_asteroid_spawner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_cjxyd")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("4_u03if")

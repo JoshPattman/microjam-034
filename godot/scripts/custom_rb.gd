@@ -115,3 +115,6 @@ func enter_blackhole(at: Vector2) -> void:
 	is_entering_blackhole = true
 	blackhole_location = at
 	initial_blackhole_suck_location = global_position
+
+static func get_global_dt_mult() -> float:
+	return 1.0 / player_time_mult

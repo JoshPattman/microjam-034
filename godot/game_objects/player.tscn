@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8jr51j6ge7n0"]
+[gd_scene load_steps=7 format=3 uid="uid://c8jr51j6ge7n0"]
 
 [ext_resource type="Script" uid="uid://df8g3j31hj85f" path="res://scripts/player.gd" id="1_a4hy7"]
 [ext_resource type="PackedScene" uid="uid://fflvvbkq6cur" path="res://game_objects/explosion.tscn" id="2_7o085"]
 [ext_resource type="Texture2D" uid="uid://bdn0w0j4u4ui4" path="res://sprites/ship001.png" id="2_hy5qn"]
+[ext_resource type="Script" uid="uid://di2ypw3xfxyme" path="res://game_objects/asteroid_spawn.gd" id="4_7o085"]
 
 [sub_resource type="Curve" id="Curve_0rdlk"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 3.19298, 0.0, 0, 0]
@@ -25,3 +26,19 @@ texture = ExtResource("2_hy5qn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_a4hy7")
+
+[node name="AsteroidSpawn" type="Node2D" parent="."]
+position = Vector2(427, 343)
+script = ExtResource("4_7o085")
+
+[node name="AsteroidSpawn2" type="Node2D" parent="."]
+position = Vector2(-391, -207)
+script = ExtResource("4_7o085")
+
+[node name="AsteroidSpawn3" type="Node2D" parent="."]
+position = Vector2(351, -389)
+script = ExtResource("4_7o085")
+
+[node name="AsteroidSpawn4" type="Node2D" parent="."]
+position = Vector2(-419, 326)
+script = ExtResource("4_7o085")
