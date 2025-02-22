@@ -1,4 +1,4 @@
-extends Sprite2D
+class_name Station extends Sprite2D
 
 signal ship_spawned(ship: Player)
 
