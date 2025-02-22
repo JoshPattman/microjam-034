@@ -59,6 +59,7 @@ func _physics_process(delta: float) -> void:
 		
 		var total_dist = (initial_blackhole_suck_location - blackhole_location).length()
 		var t = bdelta.length() / total_dist
+		t = clamp(t, 0, 1)
 		scale = t * Vector2(1,1) + (1-t) * Vector2(0.001, 0.001)
 		
 		if bdelta.length() < 10:

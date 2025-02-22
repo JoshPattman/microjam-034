@@ -23,7 +23,9 @@ func _custom_process(delta: float) -> void:
 	if current_target == null:
 		current_target = get_next_target()
 	
-	var d_target = (current_target.global_position - global_position).normalized()
+	var d_target: Vector2
+	if current_target != null:
+		d_target = (current_target.global_position - global_position).normalized()
 	
 	var avoids = get_tree().get_nodes_in_group("enemy_avoid")
 	var d_avoid = Vector2()
