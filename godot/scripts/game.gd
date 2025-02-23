@@ -25,6 +25,14 @@ var resource_asteroid_scene = preload("res://game_objects/resource_asteroid.tscn
 var wave_counter: int = 0
 var wave_timer: float = 0.0
 
+var score: int = 0:
+	set(new):
+		var txt = str(new)
+		while len(txt) < 6:
+			txt = "0"+txt
+		$PlayerCamera/UI/Score.text = txt
+		score = new
+
 var player_resources: float = 0.0:
 	set(new):
 		$PlayerCamera/UI/Stats/Resources/Label.text = str(new)
@@ -47,6 +55,7 @@ func _ready() -> void:
 	_spawn_initial_asteroids()
 	add_to_group("game_controller")
 	$Station.on_station_exploded.connect(_on_die)
+	score = 0
 
 func _on_die() -> void:
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")

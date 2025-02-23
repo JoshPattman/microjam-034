@@ -154,7 +154,9 @@ func _mining_timer():
 		if connected_resource.health > 0:
 			var lc = Life.get_life_script(self)
 			lc.damage(-connected_resource.health)
-			print(connected_resource.health)
+		if connected_resource.score > 0:
+			var game_controller: Game = get_tree().get_first_node_in_group("game_controller")
+			game_controller.score += connected_resource.score
 
 func _on_hurt(to: float) -> void:
 	_show_bubble()
