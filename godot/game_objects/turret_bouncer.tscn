@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnv7i55ocbrob"]
+[gd_scene load_steps=6 format=3 uid="uid://bnv7i55ocbrob"]
 
 [ext_resource type="Script" uid="uid://dfaqnj6r52slx" path="res://scripts/turret.gd" id="1_oc61v"]
 [ext_resource type="PackedScene" uid="uid://bvkjss1fbth2p" path="res://game_objects/pusher_td.tscn" id="2_tsg0k"]
+[ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="3_w1mfm"]
 
 [sub_resource type="Gradient" id="Gradient_4nm3i"]
 colors = PackedColorArray(0.602381, 0, 0.100348, 1, 1, 1, 1, 1)
@@ -18,7 +19,12 @@ shot_delay = 6.0
 is_single_shot = false
 is_pusher = true
 push_prefab = ExtResource("2_tsg0k")
+push_for = 0.0
 metadata/_custom_type_script = "uid://dfaqnj6r52slx"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_jiabh")
+
+[node name="Life" type="Node" parent="."]
+script = ExtResource("3_w1mfm")
+metadata/_custom_type_script = "uid://bfk8htwmce2hg"

@@ -15,8 +15,11 @@ var time_since_last_enemy: float = 0.0
 
 @export var shooter_prefab: PackedScene
 @export var bouncer_prefab: PackedScene
+@export var mine_prefab: PackedScene
 
-@export var turret_cost: float = 1.0
+@export var shooter_turret_cost: float = 5.0
+@export var bouncer_turret_cost: float = 3.0
+@export var mine_turret_cost: float = 1.0
 
 var player_resources: float = 0.0:
 	set(new):
@@ -39,7 +42,10 @@ func _process(delta: float) -> void:
 	
 	time_since_last_enemy += delta * CustomRigidbody2D.get_global_dt_mult()
 	if time_since_last_enemy > enemy_frequency:
-		_spawn_enemy()
+		enemy_frequency *= 0.981
+		if enemy_frequency < 0.1:
+			enemy_frequency = 0.1
+		_spawn_enemy(randf() > 0.75)
 		time_since_last_enemy = 0
 	
 	if !is_equal_approx(1.0, CustomRigidbody2D.get_global_dt_mult()):
@@ -51,16 +57,16 @@ func _process(delta: float) -> void:
 	_handle_placing()
 
 
-func _spawn_enemy():
+func _spawn_enemy(at_player: bool):
 	if len(get_tree().get_nodes_in_group("enemies")) >= max_enemies:
 		return
 	var group = enemy_spawn_groups[randi_range(0, len(enemy_spawn_groups)-1)]
-	var loc = _get_random_asteroid_spawn_loc()
+	var loc = _get_random_enemy_spawn_loc(at_player)
 	var angle: float = 0.0
 	for elem: PackedScene in group.items:
 		var ins = elem.instantiate()
 		if ins is Node2D:
-			ins.global_position = loc + Vector2(1, 0).rotated(angle)
+			ins.global_position = loc + Vector2(100, 0).rotated(angle)
 		angle += PI * 2 / len(group.items)
 		add_child(ins)
 
@@ -96,13 +102,33 @@ func _get_random_asteroid_spawn_loc() -> Vector2:
 		return Vector2()
 	return all_spawn_locations[randi_range(0, len(all_spawn_locations)-1)].global_position
 
+
+func _get_random_enemy_spawn_loc(at_player: bool) -> Vector2:
+	var player = get_tree().get_first_node_in_group("player")
+	var player_pos = Vector2()
+	if player != null and player is Node2D:
+		player_pos = player.global_position
+	
+	if at_player:
+		# Spawn around the player
+		return player_pos + Vector2(sqrt(randf_range(500*500, 1000*1000)), 0).rotated(randf_range(0, PI))
+	else:
+		# Spawn around the base
+		var loc: Vector2 = player_pos
+		while loc.distance_to(player_pos) < 800:
+			loc = Vector2(sqrt(randf_range(0, 1000*1000)), 0).rotated(randf_range(0, PI))
+		return loc
+
 func _handle_placing() -> void:
-	if Input.is_action_just_pressed("player_place_shooter") && player_resources >= turret_cost:
+	if Input.is_action_just_pressed("player_place_shooter") && player_resources >= shooter_turret_cost:
 		_place(shooter_prefab)
-		player_resources -= turret_cost
-	if Input.is_action_just_pressed("player_place_bouncer") && player_resources >= turret_cost:
+		player_resources -= shooter_turret_cost
+	if Input.is_action_just_pressed("player_place_bouncer") && player_resources >= bouncer_turret_cost:
 		_place(bouncer_prefab)
-		player_resources -= turret_cost
+		player_resources -= bouncer_turret_cost
+	if Input.is_action_just_pressed("player_place_mine") && player_resources >= mine_turret_cost:
+		_place(mine_prefab)
+		player_resources -= mine_turret_cost
 
 func _place(tower: PackedScene) -> Node2D:
 	var player: Player = get_tree().get_first_node_in_group("player")

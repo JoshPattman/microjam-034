@@ -6,7 +6,8 @@ class_name Turret
 @export var range: float = 200
 @export var shot_delay: float = 1.0:
 	set(new):
-		$AnimationPlayer.speed_scale = 1.0 / shot_delay
+		if $AnimationPlayer != null:
+			$AnimationPlayer.speed_scale = 1.0 / shot_delay
 @export var is_single_shot: bool = true
 @export var is_pusher: bool = false
 @export var push_prefab: PackedScene
@@ -22,6 +23,9 @@ var current_push_prefab: Node2D
 func _ready() -> void:
 	if add_to_targets:
 		add_to_group("enemy_targets")
+	var lc = Life.get_life_script(self)
+	if lc != null:
+		lc.on_die.connect(queue_free)
 
 func _process(delta: float) -> void:
 	var enemies = get_tree().get_nodes_in_group("enemies")
@@ -38,13 +42,14 @@ func _process(delta: float) -> void:
 		if time_since_last_shot > shot_delay:
 			time_since_last_shot = 0.0
 			if is_single_shot:
-				closest_enemy.blow_up()
+				var lc = Life.get_life_script(closest_enemy)
+				if lc != null:
+					lc.damage(1)
 				$AnimationPlayer.play("charge")
 				_handle_shot(closest_enemy.global_position)
 			elif is_pusher:
 				pushing_time_left = push_for
 				var pu = push_prefab.instantiate()
-				print("create")
 				if pu is Node2D:
 					pu.global_position = global_position
 					if current_push_prefab != null:

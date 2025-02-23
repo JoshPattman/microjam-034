@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://rm50arymrac8"]
+[gd_scene load_steps=9 format=3 uid="uid://rm50arymrac8"]
 
 [ext_resource type="Texture2D" uid="uid://cx68l1ieiqn" path="res://sprites/station001.png" id="1_phur1"]
 [ext_resource type="Script" uid="uid://dv5qup0e7c5x4" path="res://scripts/station.gd" id="2_26n74"]
 [ext_resource type="PackedScene" uid="uid://c8jr51j6ge7n0" path="res://game_objects/player.tscn" id="3_ksyti"]
 [ext_resource type="PackedScene" uid="uid://7pkivl6g6mek" path="res://game_objects/turret_shooter.tscn" id="4_51j1b"]
+[ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="5_fms4r"]
 
 [sub_resource type="Animation" id="Animation_51j1b"]
 length = 0.001
@@ -59,4 +60,8 @@ libraries = {
 autoplay = "rotate"
 
 [node name="TurretShooter" parent="." instance=ExtResource("4_51j1b")]
-visible = false
+
+[node name="Life" type="Node" parent="."]
+script = ExtResource("5_fms4r")
+initial_life = 10
+metadata/_custom_type_script = "uid://bfk8htwmce2hg"
