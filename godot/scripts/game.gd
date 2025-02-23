@@ -57,10 +57,10 @@ func _spawn_enemy():
 	var angle: float = 0.0
 	for elem: PackedScene in group.items:
 		var ins = elem.instantiate()
-		add_child(ins)
 		if ins is Node2D:
 			ins.global_position = loc + Vector2(1, 0).rotated(angle)
 		angle += PI * 2 / len(group.items)
+		add_child(ins)
 
 func _spawn_initial_asteroids() -> void:
 	for i in range(8):
@@ -80,9 +80,9 @@ func _spawn_asteroid(at: Vector2, has_res: bool, velocity: Vector2) -> Asteroid:
 		instance = asteroid_scene.instantiate()
 	else:
 		instance = resource_asteroid_scene.instantiate()
-	$Asteroids.add_child(instance)
 	instance.global_position = at
 	instance.real_velocity = velocity
+	$Asteroids.add_child(instance)
 	return instance
 
 func _get_random_asteroid_spawn_loc() -> Vector2:
