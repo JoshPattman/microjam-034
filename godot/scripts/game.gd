@@ -7,6 +7,8 @@ var time_since_last_asteroid: float = 0.0
 
 var resource_asteroid_scene = preload("res://game_objects/resource_asteroid.tscn")
 
+@export var score_per_wave: int = 250
+
 @export_category("Turrets")
 @export var shooter_prefab: PackedScene
 @export var bouncer_prefab: PackedScene
@@ -69,6 +71,7 @@ func _process(delta: float) -> void:
 	if wave_timer > wave_delay:
 		var count: int = round(wave_count_m * float(wave_counter) + wave_count_c)
 		print("Spawning ", count, " enemy groups")
+		score += score_per_wave
 		for i in range(count):
 			_spawn_enemy_group(randf()>0.85)
 		wave_timer = 0
