@@ -12,7 +12,7 @@ radius = 47.3814
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253205, 1), 0.0, 0.0, 0, 0, Vector2(0.817308, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_enolj"]
+[sub_resource type="CurveTexture" id="CurveTexture_iib8q"]
 curve = SubResource("Curve_iib8q")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ipbn"]
@@ -25,7 +25,7 @@ radial_accel_min = 13.71
 radial_accel_max = 44.57
 scale_min = 0.4
 scale_max = 2.0
-scale_curve = SubResource("CurveTexture_enolj")
+scale_curve = SubResource("CurveTexture_iib8q")
 
 [node name="Whitehole" type="Node2D"]
 script = ExtResource("1_iib8q")

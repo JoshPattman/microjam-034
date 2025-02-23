@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvkjss1fbth2p"]
+
+[ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_aek4j"]
+
+[sub_resource type="Curve" id="Curve_aek4j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253205, 1), 0.0, 0.0, 0, 0, Vector2(0.817308, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_enolj"]
+curve = SubResource("Curve_aek4j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_koon5"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 13.71
+radial_accel_max = 44.57
+scale_min = 0.4
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_enolj")
+
+[node name="PusherTd" type="Node2D"]
+script = ExtResource("1_aek4j")
+slow_mult = 0.0
+slow_range = 0
+pull_force = -500.0
+pull_range = 300.0
+metadata/_custom_type_script = "uid://vjj0eerp052v"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 80
+lifetime = 2.0
+trail_lifetime = 0.19
+process_material = SubResource("ParticleProcessMaterial_koon5")
