@@ -252,6 +252,21 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("21_pl11u")
 
+[node name="Score" type="Label" parent="PlayerCamera/UI"]
+layout_mode = 2
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -29.0
+offset_right = -8.0
+offset_bottom = -7.0
+theme_override_font_sizes/font_size = 24
+text = "000000"
+label_settings = SubResource("LabelSettings_ssvqc")
+horizontal_alignment = 2
+
 [node name="Holes" type="Node" parent="."]
 
 [node name="Blackhole" parent="Holes" instance=ExtResource("6_p57ef")]
