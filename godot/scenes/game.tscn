@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://8w4qxf6yifmj"]
+[gd_scene load_steps=29 format=3 uid="uid://8w4qxf6yifmj"]
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://67ykeat1d8xh" path="res://sprites/top-bar001.png" id="14_264po"]
 [ext_resource type="Texture2D" uid="uid://bm4o81stbode0" path="res://sprites/slider001.png" id="15_1kice"]
 [ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="15_rysoc"]
+[ext_resource type="Script" uid="uid://or5q0cjyks87" path="res://scenes/compass.gd" id="18_37s47"]
+[ext_resource type="Texture2D" uid="uid://bm7ehqg3dvxst" path="res://sprites/compass.png" id="19_bt5mj"]
 [ext_resource type="AudioStream" uid="uid://c6f71ovttvqix" path="res://song1.wav" id="20_1kice"]
 
 [sub_resource type="Resource" id="Resource_vtaks"]
@@ -181,6 +183,31 @@ label_settings = SubResource("LabelSettings_rysoc")
 layout_mode = 2
 text = "1.0"
 label_settings = SubResource("LabelSettings_264po")
+
+[node name="Control" type="Control" parent="PlayerCamera/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -29.0
+offset_right = 38.0
+offset_bottom = -24.0
+grow_vertical = 0
+script = ExtResource("18_37s47")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerCamera/UI/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -25.0
+offset_right = 20.0
+offset_bottom = 15.0
+texture = ExtResource("19_bt5mj")
+stretch_mode = 5
 
 [node name="Holes" type="Node" parent="."]
 
