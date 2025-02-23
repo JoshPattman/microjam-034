@@ -27,10 +27,16 @@ var wave_timer: float = 0.0
 
 var player_resources: float = 0.0:
 	set(new):
-		$PlayerCamera/UI/Resources/Label.text = str(new)
+		$PlayerCamera/UI/Stats/Resources/Label.text = str(new)
 		player_resources = new
 
-var player_boosts: float = 0.0
+var player_boosts: float = 0.0:
+	set(new):
+		$PlayerCamera/UI/Stats/Boost/Label.text = str(new)
+		player_boosts = new
+
+func update_ui_health(health: float):
+	$PlayerCamera/UI/Stats/Sheilds/Label.text = str(health-1)
 
 func _ready() -> void:
 	$Station.ship_spawned.connect(

@@ -39,6 +39,7 @@ func _ready() -> void:
 	if life != null:
 		life.on_die.connect(_blow_up)
 		life.on_hurt.connect(_on_hurt)
+		life.on_health_changed.connect(_on_health_change)
 
 func _blow_up() -> void:
 	var explosion_instance = explosion.instantiate()
@@ -150,7 +151,6 @@ func _mining_timer():
 		if connected_resource.boost > 0:
 			var game_controller: Game = get_tree().get_first_node_in_group("game_controller")
 			game_controller.player_boosts += connected_resource.boost
-			print(connected_resource.boost)
 		if connected_resource.health > 0:
 			var lc = Life.get_life_script(self)
 			lc.damage(-connected_resource.health)
@@ -158,6 +158,10 @@ func _mining_timer():
 
 func _on_hurt(to: float) -> void:
 	_show_bubble()
+	
+func _on_health_change(to: float) -> void:
+	var game_controller: Game = get_tree().get_first_node_in_group("game_controller")
+	game_controller.update_ui_health(to)
 
 func _show_bubble() -> void:
 	var bubble: CanvasItem = $Bubble

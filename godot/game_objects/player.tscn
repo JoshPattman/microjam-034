@@ -88,7 +88,6 @@ autoplay = "thrust"
 
 [node name="Life" type="Node" parent="."]
 script = ExtResource("5_pyg5a")
-debug = true
 metadata/_custom_type_script = "uid://bfk8htwmce2hg"
 
 [node name="Bubble" type="Sprite2D" parent="."]
