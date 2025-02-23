@@ -32,9 +32,8 @@ func _get_rb_in_parents(n: Node) -> CustomRigidbody2D:
 	return null
 
 func _move_and_slide(delta: float) -> void:
-	move_and_slide()
-	for i in range(get_slide_collision_count()):
-		var col = get_slide_collision(i)
+	var col = move_and_collide(velocity * delta)
+	if col != null:
 		var collider = col.get_collider()
 		if collider is Node:
 			var rb = _get_rb_in_parents(collider)

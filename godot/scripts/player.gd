@@ -40,6 +40,9 @@ func blow_up() -> void:
 	queue_free()
 
 func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
+	if other is Player:
+		return
+	other.print_tree()
 	blow_up()
 
 func _custom_physics_process(delta: float) -> void:
