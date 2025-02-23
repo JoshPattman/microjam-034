@@ -69,12 +69,12 @@ func _spawn_initial_asteroids() -> void:
 		for j in range(15):
 			var ox = randf_range(-250, 250)
 			var oy = randf_range(-250, 250)
-			_spawn_asteroid(Vector2(cx+ox, cy+oy), randf()>0.8, Vector2())
+			_spawn_asteroid(Vector2(cx+ox, cy+oy), randf()>0.8, Vector2(), 0.6+randf())
 
 func _spawn_meteroite() -> void:
-	_spawn_asteroid(_get_random_asteroid_spawn_loc(), randf()>0.8, Utils.get_random_unit_vector() * 30)
+	_spawn_asteroid(_get_random_asteroid_spawn_loc(), randf()>0.8, Utils.get_random_unit_vector() * 100, 0.6+randf())
 
-func _spawn_asteroid(at: Vector2, has_res: bool, velocity: Vector2) -> Asteroid:
+func _spawn_asteroid(at: Vector2, has_res: bool, velocity: Vector2, scale: float) -> Asteroid:
 	var instance: Asteroid
 	if !has_res:
 		instance = asteroid_scene.instantiate()
@@ -82,6 +82,7 @@ func _spawn_asteroid(at: Vector2, has_res: bool, velocity: Vector2) -> Asteroid:
 		instance = resource_asteroid_scene.instantiate()
 	instance.global_position = at
 	instance.real_velocity = velocity
+	instance.scale *= scale
 	$Asteroids.add_child(instance)
 	return instance
 
