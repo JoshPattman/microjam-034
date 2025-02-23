@@ -22,9 +22,9 @@
 [ext_resource type="Script" uid="uid://or5q0cjyks87" path="res://scripts/compass.gd" id="18_37s47"]
 [ext_resource type="Texture2D" uid="uid://bm7ehqg3dvxst" path="res://sprites/compass.png" id="19_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://j2xjquf5x2u" path="res://sprites/resources_icon.png" id="19_e1j6l"]
-[ext_resource type="AudioStream" uid="uid://c6f71ovttvqix" path="res://song1.wav" id="20_1kice"]
 [ext_resource type="Texture2D" uid="uid://bdst5yk1cqalx" path="res://sprites/boost_icon.png" id="20_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://clumteybfdmj4" path="res://sprites/sheild_icon.png" id="21_pl11u"]
+[ext_resource type="AudioStream" uid="uid://cdd5qo4kffbcy" path="res://music/Speedier Than Photons.mp3" id="24_e1j6l"]
 
 [sub_resource type="Resource" id="Resource_vtaks"]
 script = ExtResource("2_0tnpc")
@@ -283,8 +283,8 @@ position = Vector2(3856, 1513)
 position = Vector2(-3089, -1954)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("20_1kice")
-volume_db = -34.492
+stream = ExtResource("24_e1j6l")
+volume_db = -20.0
 autoplay = true
 
 [node name="Enemy" parent="." instance=ExtResource("6_u5sy4")]
