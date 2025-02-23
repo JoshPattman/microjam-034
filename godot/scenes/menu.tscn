@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxnmkuax7eu6p"]
+
+[ext_resource type="Script" uid="uid://dyg7vyubcm622" path="res://scenes/menu.gd" id="1_vjb58"]
+[ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="1_yqeox"]
+[ext_resource type="PackedScene" uid="uid://8w4qxf6yifmj" path="res://scenes/game.tscn" id="2_con2f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4h3mk"]
+bg_color = Color(0.015553, 0.0706398, 0.139202, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjb58"]
+font = ExtResource("1_yqeox")
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_yqeox"]
+font = ExtResource("1_yqeox")
+font_size = 32
+font_color = Color(0.728822, 0.728822, 0.728822, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjb58")
+game_scene = ExtResource("2_con2f")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4h3mk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.517
+anchor_top = 0.5
+anchor_right = 0.517
+anchor_bottom = 0.5
+offset_left = -358.32
+offset_top = -138.0
+offset_right = 357.68
+offset_bottom = -7.0
+text = "Temporal Engineer"
+label_settings = SubResource("LabelSettings_vjb58")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.548
+anchor_top = 0.557
+anchor_right = 0.548
+anchor_bottom = 0.557
+offset_left = -233.08
+offset_top = -10.78
+offset_right = 225.92
+offset_bottom = 72.22
+text = "SPACE To Play
+ESC to Quit"
+label_settings = SubResource("LabelSettings_yqeox")
+horizontal_alignment = 1

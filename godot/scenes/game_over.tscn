@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://pckc8tu22oqv"]
+[gd_scene load_steps=8 format=3 uid="uid://pckc8tu22oqv"]
 
 [ext_resource type="Script" uid="uid://x2psjmb1436q" path="res://scripts/game_over.gd" id="1_wqhvx"]
 [ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="1_xeevv"]
 [ext_resource type="PackedScene" uid="uid://8w4qxf6yifmj" path="res://scenes/game.tscn" id="2_wqhvx"]
+[ext_resource type="PackedScene" uid="uid://bxnmkuax7eu6p" path="res://scenes/menu.tscn" id="3_racf3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqhvx"]
 bg_color = Color(0.666716, 0.181621, 0.163629, 1)
@@ -26,6 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wqhvx")
 game_scene = ExtResource("2_wqhvx")
+menu_scene = ExtResource("3_racf3")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -57,11 +59,11 @@ anchor_left = 0.521
 anchor_top = 0.507
 anchor_right = 0.521
 anchor_bottom = 0.507
-offset_left = -232.16
-offset_top = 0.219971
-offset_right = 232.84
-offset_bottom = 114.22
-text = "R to Reset
+offset_left = -230.16
+offset_top = 24.22
+offset_right = 234.84
+offset_bottom = 138.22
+text = "SPACE to Reset
 ESC To Quit"
 label_settings = SubResource("LabelSettings_racf3")
 horizontal_alignment = 1
