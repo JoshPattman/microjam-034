@@ -21,9 +21,32 @@ var is_entering_blackhole: bool = false
 var blackhole_location: Vector2
 var initial_blackhole_suck_location: Vector2
 
-# This function should use gme time velocity and is passed in game time delta
+func _get_rb_in_parents(n: Node) -> CustomRigidbody2D:
+	if n == null:
+		return null
+	if n is CustomRigidbody2D:
+		return n
+	var p = n.get_parent()
+	if p != null:
+		return _get_rb_in_parents(p)
+	return null
+
 func _move_and_slide(delta: float) -> void:
 	move_and_slide()
+	for i in range(get_slide_collision_count()):
+		var col = get_slide_collision(i)
+		var collider = col.get_collider()
+		if collider is Node:
+			var rb = _get_rb_in_parents(collider)
+			if rb != null:
+				_on_rb_collision_wrapper(col.get_position(), col.get_normal(), rb)
+				rb._on_rb_collision_wrapper(col.get_position(), -col.get_normal(), self)
+
+func _on_rb_collision_wrapper(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
+	_on_rb_collision(point, normal, other)
+
+func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
+	pass
 	
 # Override this to do physics
 func _custom_physics_process(delta: float) -> void:

@@ -46,9 +46,8 @@ _data = {
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_0o6d6")
-speed = 800.0
-k_targeting = 0.3
-k_avoiding = 0.7
+speed = 350.0
+k_avoiding = 0.8
 is_kamikazee = true
 kamikazee_explosion = ExtResource("2_k1174")
 metadata/_custom_type_script = "uid://ccw4ax373njdf"

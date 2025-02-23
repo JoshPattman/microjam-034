@@ -44,10 +44,8 @@ func blow_up() -> void:
 	add_sibling(explosion_instance)
 	queue_free()
 
-func _move_and_slide(delta: float) -> void:
-	var col = move_and_collide(delta * velocity)
-	if col != null:
-		blow_up()
+func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
+	blow_up()
 
 func _custom_physics_process(delta: float) -> void:
 	var booster = 0.0
