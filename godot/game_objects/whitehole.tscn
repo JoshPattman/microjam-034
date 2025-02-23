@@ -30,8 +30,9 @@ scale_curve = SubResource("CurveTexture_iib8q")
 [node name="Whitehole" type="Node2D"]
 script = ExtResource("1_iib8q")
 slow_mult = 10.0
-slow_range = 600
+slow_range = 800
 pull_force = -400.0
+pull_range = 800.0
 metadata/_custom_type_script = "uid://vjj0eerp052v"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
