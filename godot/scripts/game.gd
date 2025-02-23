@@ -143,12 +143,15 @@ func _handle_placing() -> void:
 	if Input.is_action_just_pressed("player_place_shooter") && player_resources >= shooter_turret_cost:
 		_place(shooter_prefab)
 		player_resources -= shooter_turret_cost
+		$PlaceTowerPlayer.play()
 	if Input.is_action_just_pressed("player_place_bouncer") && player_resources >= bouncer_turret_cost:
 		_place(bouncer_prefab)
 		player_resources -= bouncer_turret_cost
+		$PlaceTowerPlayer.play()
 	if Input.is_action_just_pressed("player_place_mine") && player_resources >= mine_turret_cost:
 		_place(mine_prefab)
 		player_resources -= mine_turret_cost
+		$PlaceTowerPlayer.play()
 
 func _place(tower: PackedScene) -> Node2D:
 	var player: Player = get_tree().get_first_node_in_group("player")

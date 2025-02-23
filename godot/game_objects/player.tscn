@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8jr51j6ge7n0"]
+[gd_scene load_steps=19 format=3 uid="uid://c8jr51j6ge7n0"]
 
 [ext_resource type="Script" uid="uid://df8g3j31hj85f" path="res://scripts/player.gd" id="1_a4hy7"]
 [ext_resource type="PackedScene" uid="uid://fflvvbkq6cur" path="res://game_objects/explosion.tscn" id="2_7o085"]
@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://dwk283kp0qowb" path="res://sprites/tether001.png" id="4_7o085"]
 [ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="5_pyg5a"]
 [ext_resource type="Texture2D" uid="uid://5u4yq1d4fkd1" path="res://sprites/bubble.png" id="6_mq4jh"]
+[ext_resource type="AudioStream" uid="uid://0ak6vq0xwxav" path="res://sounds/jump.ogg" id="7_7rdht"]
+[ext_resource type="AudioStream" uid="uid://dawrekb2r3p1h" path="res://sounds/engine-loop.ogg" id="8_xfs5t"]
+[ext_resource type="AudioStream" uid="uid://b4vvwqocjfjtf" path="res://sounds/mine-loop.ogg" id="9_xfs5t"]
+[ext_resource type="AudioStream" uid="uid://cp8c0o0ai18od" path="res://sounds/mine.ogg" id="10_pbirh"]
+[ext_resource type="AudioStream" uid="uid://bt57fks8hp2i8" path="res://sounds/shield-hit.wav" id="11_ghwos"]
+[ext_resource type="AudioStream" uid="uid://dnnxj57fdjxkc" path="res://sounds/blackhole-enter.ogg" id="12_twgr7"]
+[ext_resource type="AudioStream" uid="uid://4jxdy3whqi5q" path="res://sounds/blackhole-loop.ogg" id="13_pdcc7"]
 
 [sub_resource type="Curve" id="Curve_0rdlk"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 3.19298, 0.0, 0, 0]
@@ -96,3 +103,28 @@ texture_filter = 1
 position = Vector2(0, -4)
 scale = Vector2(0.601562, 0.601562)
 texture = ExtResource("6_mq4jh")
+
+[node name="JumpPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_7rdht")
+
+[node name="ThrustPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_xfs5t")
+volume_db = -10.0
+
+[node name="MiningLoopPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_xfs5t")
+
+[node name="MinePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_pbirh")
+volume_db = -10.0
+
+[node name="ShieldHitPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_ghwos")
+
+[node name="EnterBlackholePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_twgr7")
+max_distance = 10000.0
+
+[node name="BlackholeLoopPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_pdcc7")
+volume_db = -10.0
