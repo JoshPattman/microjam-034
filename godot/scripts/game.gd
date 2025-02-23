@@ -34,24 +34,24 @@ var score: int = 0:
 		var txt = str(new)
 		while len(txt) < 6:
 			txt = "0"+txt
-		$PlayerCamera/UI/Score.text = txt
+		$PlayerCamera/UI/ScoreBar/Score.text = txt
 		score = new
 
 var player_resources: float = 0.0:
 	set(new):
-		$PlayerCamera/UI/Stats/Resources/Label.text = str(new)
+		$PlayerCamera/UI/ResourceBar/Stats/Resources/Label.text = str(new)
 		player_resources = new
 
 var player_boosts: float = 0.0:
 	set(new):
-		$PlayerCamera/UI/Stats/Boost/Label.text = str(new)
+		$PlayerCamera/UI/ResourceBar/Stats/Boost/Label.text = str(new)
 		player_boosts = new
 
 func update_ui_health(health: float):
-	$PlayerCamera/UI/Stats/Sheilds/Label.text = str(health-1)
+	$PlayerCamera/UI/ResourceBar/Stats/Sheilds/Label.text = str(health-1)
 
 func update_ui_base_health(health: float):
-	$PlayerCamera/UI/Stats/Base/Label.text = str(health)
+	$PlayerCamera/UI/ResourceBar/Stats/Base/Label.text = str(health)
 
 func _ready() -> void:
 	$Station.ship_spawned.connect(
@@ -94,11 +94,11 @@ func _process(delta: float) -> void:
 	) - $PlayerCamera/UI/TopBar/Slider.size.x / 2
 	
 	
-	if !is_equal_approx(1.0, CustomRigidbody2D.get_global_dt_mult()):
-		$PlayerCamera/UI/TimeDilation.visible = true
-		$PlayerCamera/UI/TimeDilation/Amount.text = "%.3f" % CustomRigidbody2D.get_global_dt_mult()
-	else:
-		$PlayerCamera/UI/TimeDilation.visible = false
+	#if !is_equal_approx(1.0, CustomRigidbody2D.get_global_dt_mult()):
+		#$PlayerCamera/UI/TimeDilation.visible = true
+		#$PlayerCamera/UI/TimeDilation/Amount.text = "%.3f" % CustomRigidbody2D.get_global_dt_mult()
+	#else:
+		#$PlayerCamera/UI/TimeDilation.visible = false
 	
 	_handle_placing()
 
