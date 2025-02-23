@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://8w4qxf6yifmj"]
+[gd_scene load_steps=18 format=3 uid="uid://8w4qxf6yifmj"]
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bgxbuktm1jydc" path="res://game_objects/player_camera.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bnv7i55ocbrob" path="res://game_objects/turret_bouncer.tscn" id="5_dinhu"]
 [ext_resource type="Texture2D" uid="uid://dob7ofabtinsm" path="res://sprites/minerals001.png" id="5_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://drwebus7pi642" path="res://scenes/mine.tscn" id="6_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bsu7p0dlg2h01" path="res://sprites/background002.png" id="6_kvuet"]
 [ext_resource type="PackedScene" uid="uid://bp5dqvmqobuph" path="res://game_objects/blackhole.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://dvou36u6k0wdw" path="res://game_objects/enemy_1.tscn" id="6_u5sy4"]
@@ -31,6 +32,7 @@ script = ExtResource("1_iywne")
 enemy_spawn_groups = Array[ExtResource("2_0tnpc")]([SubResource("Resource_vtaks"), SubResource("Resource_kvpfn")])
 shooter_prefab = ExtResource("4_kvpfn")
 bouncer_prefab = ExtResource("5_dinhu")
+mine_prefab = ExtResource("6_ir15t")
 
 [node name="Background" type="Node2D" parent="."]
 z_index = -10

@@ -15,6 +15,7 @@ var time_since_last_enemy: float = 0.0
 
 @export var shooter_prefab: PackedScene
 @export var bouncer_prefab: PackedScene
+@export var mine_prefab: PackedScene
 
 var player_resources: float = 0.0:
 	set(new):
@@ -101,6 +102,9 @@ func _handle_placing() -> void:
 	if Input.is_action_just_pressed("player_place_bouncer") && player_resources >= 3:
 		_place(bouncer_prefab)
 		player_resources -= 3
+	if Input.is_action_just_pressed("player_place_mine") && player_resources >= 1:
+		_place(mine_prefab)
+		player_resources -= 1
 
 func _place(tower: PackedScene) -> Node2D:
 	var player: Player = get_tree().get_first_node_in_group("player")
