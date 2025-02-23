@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://pckc8tu22oqv"]
+[gd_scene load_steps=7 format=3 uid="uid://pckc8tu22oqv"]
 
 [ext_resource type="Script" uid="uid://x2psjmb1436q" path="res://scripts/game_over.gd" id="1_wqhvx"]
 [ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="1_xeevv"]
-[ext_resource type="PackedScene" uid="uid://8w4qxf6yifmj" path="res://scenes/game.tscn" id="2_wqhvx"]
-[ext_resource type="PackedScene" uid="uid://bxnmkuax7eu6p" path="res://scenes/menu.tscn" id="3_racf3"]
 [ext_resource type="AudioStream" uid="uid://b7lfjx4c32iku" path="res://music/singularity_calm.mp3" id="5_7m3ot"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqhvx"]
@@ -27,8 +25,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wqhvx")
-game_scene = ExtResource("2_wqhvx")
-menu_scene = ExtResource("3_racf3")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
