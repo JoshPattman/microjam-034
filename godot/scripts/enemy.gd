@@ -32,6 +32,8 @@ func _ready() -> void:
 	recalc_avoids_timer = randf_range(0, recalc_avoids_every)
 
 func _custom_process(delta: float) -> void:
+	$AnimationPlayer.speed_scale = CustomRigidbody2D.get_global_dt_mult()
+
 	if current_target == null:
 		current_target = get_next_target()
 	
