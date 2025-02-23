@@ -215,7 +215,7 @@ stretch_mode = 5
 position = Vector2(-1, -1113)
 
 [node name="Whitehole" parent="Holes" instance=ExtResource("7_u5sy4")]
-position = Vector2(-8, 1397)
+position = Vector2(-130, 1531)
 
 [node name="Blackhole2" parent="Holes" instance=ExtResource("6_p57ef")]
 position = Vector2(2770, -652)
@@ -223,14 +223,20 @@ position = Vector2(2770, -652)
 [node name="Whitehole2" parent="Holes" instance=ExtResource("7_u5sy4")]
 position = Vector2(1948, -2435)
 
+[node name="Whitehole3" parent="Holes" instance=ExtResource("7_u5sy4")]
+position = Vector2(2132, 3004)
+
 [node name="Blackhole3" parent="Holes" instance=ExtResource("6_p57ef")]
 position = Vector2(-2529, 740)
+
+[node name="Blackhole6" parent="Holes" instance=ExtResource("6_p57ef")]
+position = Vector2(-2096, 3403)
 
 [node name="Blackhole4" parent="Holes" instance=ExtResource("6_p57ef")]
 position = Vector2(3856, 1513)
 
 [node name="Blackhole5" parent="Holes" instance=ExtResource("6_p57ef")]
-position = Vector2(-2883, -3102)
+position = Vector2(-3089, -1954)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_1kice")

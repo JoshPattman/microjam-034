@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbqhnh0lw7fmk"]
+[gd_scene load_steps=10 format=3 uid="uid://bbqhnh0lw7fmk"]
 
 [ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_iib8q"]
 [ext_resource type="Texture2D" uid="uid://b15ewfavom2mn" path="res://sprites/blackhole001.png" id="2_7ipbn"]
 [ext_resource type="Script" uid="uid://43pj2c80awim" path="res://scripts/black_hole.gd" id="3_d1qk7"]
 [ext_resource type="Script" uid="uid://pbr77i1ed5mv" path="res://scripts/enemy_avoid.gd" id="4_u03if"]
+[ext_resource type="Script" uid="uid://du0hqhq11n05h" path="res://scripts/special_resource_source.gd" id="5_7ipbn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjxyd"]
 radius = 47.3814
@@ -58,3 +59,8 @@ amount = 80
 lifetime = 2.0
 trail_lifetime = 0.19
 process_material = SubResource("ParticleProcessMaterial_7ipbn")
+
+[node name="SpecialResourceSource" type="Node2D" parent="."]
+script = ExtResource("5_7ipbn")
+health = 0.25
+metadata/_custom_type_script = "uid://du0hqhq11n05h"
