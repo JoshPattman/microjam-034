@@ -21,6 +21,7 @@ func get_multiplier_at(pos: Vector2) -> float:
 	if dist > slow_range:
 		return 1.0
 	var t = 1 - (dist / slow_range)
+	t = t*t
 	return (1-t) * 1.0 + t * slow_mult
 
 func get_acceleration_at(pos: Vector2) -> Vector2:
