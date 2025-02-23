@@ -21,5 +21,4 @@ shape = SubResource("CircleShape2D_cuwoq")
 [node name="EnemyAvoid" type="Node2D" parent="."]
 script = ExtResource("3_ym2k8")
 radius = 125.0
-weight = 0.2
 metadata/_custom_type_script = "uid://pbr77i1ed5mv"

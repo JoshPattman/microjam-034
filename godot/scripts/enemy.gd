@@ -48,7 +48,7 @@ func _custom_process(delta: float) -> void:
 			var a_dist = a_delta.length()
 			if a_dist > a.radius:
 				continue
-			d_avoid -= (a_delta/a_dist) * (1 - (a_dist/a.radius))
+			d_avoid -= (a_delta/a_dist) * (1 - (a_dist/a.radius)) * a.weight
 	if d_avoid.length() > 1:
 		d_avoid = d_avoid.normalized()
 	
