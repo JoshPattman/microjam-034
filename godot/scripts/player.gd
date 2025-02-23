@@ -74,7 +74,9 @@ func _custom_physics_process(delta: float) -> void:
 	if Input.is_action_pressed("player_break", true):
 		breaker = 1
 	if Input.is_action_just_pressed("player_jump", true) && game_controller.player_boosts > 0:
+		var initial_pos = global_position
 		global_position += current_forward() * 175
+		var new_pos = global_position
 		game_controller.player_boosts -= 1
 		
 	if Input.is_action_just_pressed("player_collect"):
