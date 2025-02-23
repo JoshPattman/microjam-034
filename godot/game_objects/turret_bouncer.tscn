@@ -44,14 +44,12 @@ _data = {
 }
 
 [node name="TurretBouncer" type="Node2D"]
-position = Vector2(0, -1)
 script = ExtResource("1_oc61v")
 range = 400.0
 shot_delay = 6.0
 is_single_shot = false
 is_pusher = true
 push_prefab = ExtResource("2_tsg0k")
-push_for = 0.0
 metadata/_custom_type_script = "uid://dfaqnj6r52slx"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

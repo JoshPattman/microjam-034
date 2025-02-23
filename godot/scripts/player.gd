@@ -20,7 +20,8 @@ signal died
 @export var collection_radius_sqaure: float = 40000
 @export var mine_rate: float = 0.5
 @export var mine_amount: float = 0.5
-var connected_resource: ResourceAsteroid
+
+var connected_resource: Node2D
 
 
 var is_boost: bool = false:
@@ -37,6 +38,8 @@ func _ready() -> void:
 	var life = Life.get_life_script(self)
 	if life != null:
 		life.on_die.connect(_blow_up)
+		life.on_hurt.connect(_on_hurt)
+		life.on_health_changed.connect(_on_health_change)
 
 func _blow_up() -> void:
 	var explosion_instance = explosion.instantiate()
@@ -51,11 +54,14 @@ func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D)
 	var other_life = Life.get_life_script(other)
 	if other_life != null:
 		other_life.damage(1)
+	real_velocity += normal * 200
 
 func _custom_physics_process(delta: float) -> void:
 	var booster = 0.0
 	var rotater = 0.0
 	var breaker = 0.0
+	
+	var game_controller: Game = get_tree().get_first_node_in_group("game_controller")
 	
 	if Input.is_action_pressed("player_forward",true):
 		booster += 1.0
@@ -67,6 +73,9 @@ func _custom_physics_process(delta: float) -> void:
 		rotater += 1
 	if Input.is_action_pressed("player_break", true):
 		breaker = 1
+	if Input.is_action_just_pressed("player_jump", true) && game_controller.player_boosts > 0:
+		global_position += current_forward() * 175
+		game_controller.player_boosts -= 1
 		
 	if Input.is_action_just_pressed("player_collect"):
 		connect_to_resource()
@@ -91,8 +100,8 @@ func connect_to_resource():
 		return
 	
 	var closest_distance: float = INF
-	var closest_resource: ResourceAsteroid = null
-	for r: ResourceAsteroid in resources:
+	var closest_resource: Node2D = null
+	for r: Node2D in resources:
 		var dist = r.global_position.distance_squared_to(self.global_position)
 		if dist < closest_distance:
 			closest_distance  = dist
@@ -132,10 +141,31 @@ func _mining_timer():
 		disconnect_to_resource()
 		return
 	
-	var mine_response: Array = connected_resource.mine(mine_amount)
+	if connected_resource is ResourceAsteroid:
+		var mine_response: Array = connected_resource.mine(mine_amount)
+		mined.emit(mine_response[1])
+		
+		if mine_response[0]:
+			disconnect_to_resource()
+	elif connected_resource is SpecialResourceSource:
+		if connected_resource.boost > 0:
+			var game_controller: Game = get_tree().get_first_node_in_group("game_controller")
+			game_controller.player_boosts += connected_resource.boost
+		if connected_resource.health > 0:
+			var lc = Life.get_life_script(self)
+			lc.damage(-connected_resource.health)
+			print(connected_resource.health)
+
+func _on_hurt(to: float) -> void:
+	_show_bubble()
 	
-	mined.emit(mine_response[1])
-	
-	if mine_response[0]:
-		disconnect_to_resource()
-	
+func _on_health_change(to: float) -> void:
+	var game_controller: Game = get_tree().get_first_node_in_group("game_controller")
+	game_controller.update_ui_health(to)
+
+func _show_bubble() -> void:
+	var bubble: CanvasItem = $Bubble
+	var tw = create_tween()
+	bubble.modulate = Color(1,1,1,1)
+	tw.tween_property(bubble, "modulate", Color(1,1,1,0), 0.5)
+	tw.play()

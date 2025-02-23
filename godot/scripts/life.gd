@@ -3,20 +3,29 @@ extends Node
 class_name Life
 
 @export var initial_life: int = 1
+@export var debug: bool = false
 
 signal on_die
+signal on_hurt
+signal on_health_changed
 
-var current_life: int = 0
+var current_life: float = 0
 
 func _ready() -> void:
 	reset_life()
 
-func damage(amount: int) -> void:
+func damage(amount: float) -> void:
 	if current_life == 0:
 		return
+	if debug:
+		print(current_life," - ",amount)
 	current_life -= amount
 	if current_life <= 0:
 		current_life = 0
+	on_health_changed.emit(current_life)
+	if amount > 0:
+		on_hurt.emit(current_life)
+	if current_life == 0:
 		on_die.emit()
 
 func reset_life() -> void:
