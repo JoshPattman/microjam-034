@@ -18,6 +18,7 @@ var target_direction: Vector2
 @export var is_kamikazee: bool = false
 @export var kamikazee_range: float = 40
 @export var kamikazee_explosion: PackedScene
+@export var kamikazee_damage: int = 1
 
 var things_to_avoid: Array[EnemyAvoid] = []
 var enemies_in_range: Array[Enemy] = []
@@ -25,11 +26,16 @@ var recalc_avoids_timer: float = 0.0
 var recalc_avoids_every: float = 0.25
 
 func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
-	blow_up()
+	var other_life = Life.get_life_script(other)
+	if other_life != null:
+		other_life.damage(kamikazee_damage)
 
 func _ready() -> void:
 	add_to_group("enemies")
 	recalc_avoids_timer = randf_range(0, recalc_avoids_every)
+	var life = Life.get_life_script(self)
+	if life != null:
+		life.on_die.connect(blow_up)
 
 func _custom_process(delta: float) -> void:
 	$AnimationPlayer.speed_scale = CustomRigidbody2D.get_global_dt_mult()
@@ -79,29 +85,24 @@ func _custom_process(delta: float) -> void:
 	if d_avoid.length() > 1:
 		d_avoid = d_avoid.normalized()
 	
-	target_direction = d_target*k_targeting + d_avoid*k_avoiding + d_separate*k_separate
-	if target_direction.length() > 1:
-		target_direction = target_direction.normalized()
-	
 	if current_target != null:
 		if is_kamikazee:
 			if (global_position - current_target.global_position).length() < kamikazee_range:
-				blow_up(true)
+				blow_up()
+				var lc = Life.get_life_script(current_target)
+				if lc != null:
+					lc.damage(kamikazee_damage)
+	
+	target_direction = d_target*k_targeting + d_avoid*k_avoiding + d_separate*k_separate
+	if target_direction.length() > 1:
+		target_direction = target_direction.normalized()
 
-func blow_up(damage_target:bool = false):
+func blow_up():
 	var exp = kamikazee_explosion.instantiate()
 	if exp is Node2D:
 		exp.global_position = global_position
-		if damage_target:
-			exp.scale *= 3
-		else:
-			exp.scale *= 2
+		exp.scale *= 2
 	add_sibling(exp)
-	if damage_target:
-		if current_target is Player:
-			current_target.blow_up()
-		if current_target is Turret:
-			current_target.queue_free()
 	queue_free()
 
 func _custom_physics_process(delta: float) -> void:

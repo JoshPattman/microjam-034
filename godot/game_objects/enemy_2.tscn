@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvou36u6k0wdw"]
+[gd_scene load_steps=9 format=3 uid="uid://ckg8n7tp8qsca"]
 
-[ext_resource type="Script" uid="uid://ccw4ax373njdf" path="res://scripts/enemy.gd" id="1_0o6d6"]
-[ext_resource type="PackedScene" uid="uid://fflvvbkq6cur" path="res://game_objects/explosion.tscn" id="2_k1174"]
-[ext_resource type="Texture2D" uid="uid://oxl6gv2f8e4f" path="res://sprites/enemy001.png" id="3_ettaq"]
-[ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="4_k1174"]
+[ext_resource type="Script" uid="uid://ccw4ax373njdf" path="res://scripts/enemy.gd" id="1_d3d7c"]
+[ext_resource type="PackedScene" uid="uid://fflvvbkq6cur" path="res://game_objects/explosion.tscn" id="2_x2w6d"]
+[ext_resource type="Texture2D" uid="uid://oxl6gv2f8e4f" path="res://sprites/enemy001.png" id="3_fvb53"]
+[ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="4_x2w6d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0o6d6"]
-radius = 7.0
+radius = 14.3178
 
 [sub_resource type="Animation" id="Animation_k1174"]
 loop_mode = 1
@@ -46,16 +46,18 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_0o6d6")
-speed = 350.0
+script = ExtResource("1_d3d7c")
+speed = 150.0
 k_avoiding = 1.0
+separate_radius = 100
 is_kamikazee = true
-kamikazee_explosion = ExtResource("2_k1174")
+kamikazee_explosion = ExtResource("2_x2w6d")
 metadata/_custom_type_script = "uid://ccw4ax373njdf"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("3_ettaq")
+scale = Vector2(2, 2)
+texture = ExtResource("3_fvb53")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -68,5 +70,5 @@ libraries = {
 autoplay = "RESET"
 
 [node name="Life" type="Node" parent="."]
-script = ExtResource("4_k1174")
+script = ExtResource("4_x2w6d")
 metadata/_custom_type_script = "uid://bfk8htwmce2hg"
