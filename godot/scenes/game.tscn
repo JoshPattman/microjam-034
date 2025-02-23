@@ -175,3 +175,6 @@ position = Vector2(3856, 1513)
 
 [node name="Blackhole5" parent="Holes" instance=ExtResource("6_p57ef")]
 position = Vector2(-2883, -3102)
+
+[node name="Enemy" parent="." instance=ExtResource("4_ca42v")]
+position = Vector2(-94, 29)
