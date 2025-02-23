@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfaqnj6r52slx" path="res://scripts/turret.gd" id="1_oc61v"]
 [ext_resource type="PackedScene" uid="uid://bvkjss1fbth2p" path="res://game_objects/pusher_td.tscn" id="2_tsg0k"]
 [ext_resource type="Texture2D" uid="uid://dadufbw0q2in6" path="res://sprites/turret002.png" id="3_1f0ak"]
-[ext_resource type="Script" path="res://scripts/life.gd" id="3_w1mfm"]
+[ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="3_w1mfm"]
 
 [sub_resource type="Animation" id="Animation_md8tu"]
 length = 0.001
