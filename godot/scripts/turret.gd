@@ -4,7 +4,9 @@ class_name Turret
 
 @export_category("Turret")
 @export var range: float = 200
-@export var shot_delay: float = 1.0
+@export var shot_delay: float = 1.0:
+	set(new):
+		$AnimationPlayer.speed_scale = 1.0 / shot_delay
 @export var is_single_shot: bool = true
 @export var is_pusher: bool = false
 @export var push_prefab: PackedScene
@@ -37,6 +39,7 @@ func _process(delta: float) -> void:
 			time_since_last_shot = 0.0
 			if is_single_shot:
 				closest_enemy.blow_up()
+				$AnimationPlayer.play("charge")
 			elif is_pusher:
 				pushing_time_left = push_for
 				var pu = push_prefab.instantiate()
