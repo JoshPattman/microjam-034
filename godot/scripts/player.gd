@@ -40,6 +40,7 @@ func _ready() -> void:
 		life.on_die.connect(_blow_up)
 		life.on_hurt.connect(_on_hurt)
 		life.on_health_changed.connect(_on_health_change)
+		_on_health_change(life.current_life)
 
 func _blow_up() -> void:
 	var explosion_instance = explosion.instantiate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://8w4qxf6yifmj"]
+[gd_scene load_steps=34 format=3 uid="uid://8w4qxf6yifmj"]
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
@@ -35,14 +35,20 @@ metadata/_custom_type_script = "uid://os1jkm3q84or"
 
 [sub_resource type="Resource" id="Resource_kvpfn"]
 script = ExtResource("2_0tnpc")
-min_wave = 3
+min_wave = 5
 items = Array[PackedScene]([ExtResource("6_u5sy4"), ExtResource("6_u5sy4"), ExtResource("6_u5sy4")])
 metadata/_custom_type_script = "uid://os1jkm3q84or"
 
 [sub_resource type="Resource" id="Resource_rysoc"]
 script = ExtResource("2_0tnpc")
-min_wave = 6
+min_wave = 20
 items = Array[PackedScene]([ExtResource("4_ca42v")])
+metadata/_custom_type_script = "uid://os1jkm3q84or"
+
+[sub_resource type="Resource" id="Resource_bhx41"]
+script = ExtResource("2_0tnpc")
+min_wave = 0
+items = Array[PackedScene]([ExtResource("6_u5sy4")])
 metadata/_custom_type_script = "uid://os1jkm3q84or"
 
 [sub_resource type="LabelSettings" id="LabelSettings_rysoc"]
@@ -60,11 +66,13 @@ outline_size = 3
 [node name="Game" type="Node2D"]
 position = Vector2(0, -1)
 script = ExtResource("1_iywne")
+score_per_wave = 50
 shooter_prefab = ExtResource("4_kvpfn")
 bouncer_prefab = ExtResource("5_dinhu")
 mine_prefab = ExtResource("6_ir15t")
-bouncer_turret_cost = 0.0
-enemy_spawn_groups = Array[ExtResource("2_0tnpc")]([SubResource("Resource_vtaks"), SubResource("Resource_kvpfn"), SubResource("Resource_rysoc")])
+wave_count_m = 0.1
+wave_delay = 8.0
+enemy_spawn_groups = Array[ExtResource("2_0tnpc")]([SubResource("Resource_vtaks"), SubResource("Resource_kvpfn"), SubResource("Resource_rysoc"), SubResource("Resource_bhx41")])
 
 [node name="Background" type="Node2D" parent="."]
 z_index = -10

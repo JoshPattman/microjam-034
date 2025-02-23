@@ -118,10 +118,11 @@ stream = ExtResource("7_7rdht")
 
 [node name="ThrustPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_xfs5t")
-volume_db = -10.0
+volume_db = -25.0
 
 [node name="MiningLoopPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_xfs5t")
+volume_db = -10.0
 
 [node name="MinePlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_pbirh")

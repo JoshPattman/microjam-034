@@ -65,6 +65,7 @@ autoplay = "charge"
 
 [node name="Life" type="Node" parent="."]
 script = ExtResource("4_up5k6")
+initial_life = 3
 metadata/_custom_type_script = "uid://bfk8htwmce2hg"
 
 [node name="FirePlayer" type="AudioStreamPlayer2D" parent="."]
