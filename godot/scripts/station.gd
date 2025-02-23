@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 				d.queue_free()
 
 func _on_health_changed(to: float) -> void:
+	$HitPlayer.play()
 	print("Station health is ", to)
 
 func _on_die() -> void:
