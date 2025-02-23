@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://7pkivl6g6mek"]
+[gd_scene load_steps=9 format=3 uid="uid://7pkivl6g6mek"]
 
 [ext_resource type="Script" uid="uid://dfaqnj6r52slx" path="res://scripts/turret.gd" id="1_4nm3i"]
 [ext_resource type="Texture2D" uid="uid://c7grhoulkexdt" path="res://sprites/turret001.png" id="2_jiabh"]
 [ext_resource type="Texture2D" uid="uid://dwk283kp0qowb" path="res://sprites/tether001.png" id="2_ssbwd"]
 [ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="4_up5k6"]
+[ext_resource type="AudioStream" uid="uid://dxdphco0c7edu" path="res://sounds/turret-fire.mp3" id="5_t7ueb"]
 
 [sub_resource type="Animation" id="Animation_ssbwd"]
 length = 0.001
@@ -65,3 +66,6 @@ autoplay = "charge"
 [node name="Life" type="Node" parent="."]
 script = ExtResource("4_up5k6")
 metadata/_custom_type_script = "uid://bfk8htwmce2hg"
+
+[node name="FirePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_t7ueb")

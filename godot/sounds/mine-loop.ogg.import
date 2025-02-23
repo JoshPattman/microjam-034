@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/mine-loop.ogg-d3dcbc335eda872512ea557609e97d5
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
