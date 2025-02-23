@@ -11,7 +11,7 @@ func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D)
 
 	var other_life = Life.get_life_script(other)
 	if other_life != null:
-		other_life.damage(10)
+		other_life.damage(1)
 
 func _custom_physics_process(delta: float) -> void:
 	if real_velocity.length() > max_velocity:
