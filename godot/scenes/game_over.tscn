@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://pckc8tu22oqv"]
+[gd_scene load_steps=8 format=3 uid="uid://pckc8tu22oqv"]
 
 [ext_resource type="Script" uid="uid://x2psjmb1436q" path="res://scripts/game_over.gd" id="1_wqhvx"]
 [ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="1_xeevv"]
@@ -16,6 +16,11 @@ font_color = Color(0.129558, 0.129558, 0.129558, 1)
 font = ExtResource("1_xeevv")
 font_size = 32
 font_color = Color(0.129558, 0.129558, 0.129558, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7m3ot"]
+font = ExtResource("1_xeevv")
+font_size = 25
+font_color = Color(0.158472, 0.158472, 0.158472, 1)
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -43,9 +48,9 @@ anchor_top = 0.507
 anchor_right = 0.508
 anchor_bottom = 0.507
 offset_left = -244.68
-offset_top = -131.78
+offset_top = -167.78
 offset_right = 245.32
-offset_bottom = 0.219971
+offset_bottom = -35.7801
 text = "Game Over"
 label_settings = SubResource("LabelSettings_tbwuq")
 horizontal_alignment = 1
@@ -71,3 +76,18 @@ horizontal_alignment = 1
 stream = ExtResource("5_7m3ot")
 volume_db = -28.221
 autoplay = true
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.512
+anchor_top = 0.552
+anchor_right = 0.512
+anchor_bottom = 0.552
+offset_left = -221.52
+offset_top = -65.08
+offset_right = 221.48
+offset_bottom = -5.08002
+text = "Score: 000000"
+label_settings = SubResource("LabelSettings_7m3ot")
+horizontal_alignment = 1
