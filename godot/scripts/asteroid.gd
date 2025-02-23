@@ -1,6 +1,8 @@
 class_name Asteroid extends CustomRigidbody2D
 
-@export var speed: float = 50.0
-
 func _ready() -> void:
-	pass #real_velocity = Utils.get_random_unit_vector() * speed
+	pass
+
+func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
+	if other is Asteroid:
+		real_velocity = real_velocity.bounce(normal)

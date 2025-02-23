@@ -24,10 +24,8 @@ var enemies_in_range: Array[Enemy] = []
 var recalc_avoids_timer: float = 0.0
 var recalc_avoids_every: float = 0.25
 
-func _move_and_slide(delta: float) -> void:
-	var col = move_and_collide(delta * velocity)
-	if col != null:
-		blow_up()
+func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
+	blow_up()
 
 func _ready() -> void:
 	add_to_group("enemies")

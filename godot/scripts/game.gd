@@ -61,7 +61,6 @@ func _spawn_enemy():
 		if ins is Node2D:
 			ins.global_position = loc + Vector2(1, 0).rotated(angle)
 		angle += PI * 2 / len(group.items)
-		print("Spawned ", ins.name)
 
 func _spawn_initial_asteroids() -> void:
 	for i in range(8):
