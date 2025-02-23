@@ -45,7 +45,6 @@ func _process(delta: float) -> void:
 		enemy_frequency *= 0.981
 		if enemy_frequency < 0.1:
 			enemy_frequency = 0.1
-		print(enemy_frequency)
 		_spawn_enemy(randf() > 0.75)
 		time_since_last_enemy = 0
 	
