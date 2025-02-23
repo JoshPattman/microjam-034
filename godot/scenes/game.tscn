@@ -286,12 +286,3 @@ position = Vector2(-3089, -1954)
 stream = ExtResource("24_e1j6l")
 volume_db = -10.0
 autoplay = true
-
-[node name="Enemy" parent="." instance=ExtResource("6_u5sy4")]
-position = Vector2(-202, 72)
-
-[node name="Enemy2" parent="." instance=ExtResource("6_u5sy4")]
-position = Vector2(-73, 174)
-
-[node name="Enemy3" parent="." instance=ExtResource("4_ca42v")]
-position = Vector2(-253, -124)
