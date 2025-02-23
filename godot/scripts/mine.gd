@@ -12,11 +12,17 @@ func _ready() -> void:
 	add_to_group("enemy_targets")
 	col = $CollisionShape2D
 	remove_child(col)
+	var lc = Life.get_life_script(self)
+	if lc != null:
+		lc.on_die.connect(blow_up)
 
 func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
-	if other is Asteroid:
-		other.queue_free()
-	blow_up()
+	var olc = Life.get_life_script(other)
+	if olc != null:
+		olc.damage(10)
+	var lc = Life.get_life_script(self)
+	if lc != null:
+		lc.damage(10000)
 
 func _custom_process(delta: float) -> void:
 	timer += delta

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://drwebus7pi642"]
+[gd_scene load_steps=6 format=3 uid="uid://drwebus7pi642"]
 
 [ext_resource type="Script" uid="uid://ewfd1inv885i" path="res://scripts/mine.gd" id="1_kqr42"]
 [ext_resource type="PackedScene" uid="uid://fflvvbkq6cur" path="res://game_objects/explosion.tscn" id="2_m55k0"]
 [ext_resource type="Texture2D" uid="uid://b4xxsj3odyi8x" path="res://sprites/mine001.png" id="3_m55k0"]
+[ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="4_j4qwv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m55k0"]
 
@@ -19,3 +20,7 @@ texture_filter = 1
 position = Vector2(-4.76837e-07, -4.76837e-07)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("3_m55k0")
+
+[node name="Life" type="Node" parent="."]
+script = ExtResource("4_j4qwv")
+metadata/_custom_type_script = "uid://bfk8htwmce2hg"
