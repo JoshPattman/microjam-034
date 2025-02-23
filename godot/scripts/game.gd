@@ -50,6 +50,9 @@ var player_boosts: float = 0.0:
 func update_ui_health(health: float):
 	$PlayerCamera/UI/Stats/Sheilds/Label.text = str(health-1)
 
+func update_ui_base_health(health: float):
+	$PlayerCamera/UI/Stats/Base/Label.text = str(health)
+
 func _ready() -> void:
 	$Station.ship_spawned.connect(
 		func(ship):

@@ -7,6 +7,8 @@ signal on_station_exploded()
 
 var current_ship: Node2D
 
+var first: bool = true
+
 func _ready() -> void:
 	add_to_group("enemy_targets")
 	var life = Life.get_life_script(self)
@@ -18,6 +20,9 @@ func _ready() -> void:
 	$TurretShooter/Sprite2D.queue_free()
 
 func _process(delta: float) -> void:
+	if first:
+		_on_health_changed(Life.get_life_script(self).current_life)
+		first = false
 	if current_ship == null:
 		current_ship = ship_scene.instantiate()
 		ship_spawned.emit(current_ship)
@@ -34,6 +39,8 @@ func _process(delta: float) -> void:
 func _on_health_changed(to: float) -> void:
 	$HitPlayer.play()
 	print("Station health is ", to)
+	var game_controller: Game = get_tree().get_first_node_in_group("game_controller")
+	game_controller.update_ui_base_health(to)
 
 func _on_die() -> void:
 	on_station_exploded.emit()
