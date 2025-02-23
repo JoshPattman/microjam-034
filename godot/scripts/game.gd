@@ -30,6 +30,8 @@ var player_resources: float = 0.0:
 		$PlayerCamera/UI/Resources/Label.text = str(new)
 		player_resources = new
 
+var player_boosts: float = 0.0
+
 func _ready() -> void:
 	$Station.ship_spawned.connect(
 		func(ship):
@@ -37,6 +39,7 @@ func _ready() -> void:
 			ship.died.connect(func(): player_resources = 0.0)
 	)
 	_spawn_initial_asteroids()
+	add_to_group("game_controller")
 	
 func _process(delta: float) -> void:
 	time_since_last_asteroid += delta * CustomRigidbody2D.get_global_dt_mult()
