@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxnmkuax7eu6p"]
+[gd_scene load_steps=8 format=3 uid="uid://bxnmkuax7eu6p"]
 
 [ext_resource type="Script" uid="uid://dyg7vyubcm622" path="res://scenes/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="1_yqeox"]
 [ext_resource type="PackedScene" uid="uid://8w4qxf6yifmj" path="res://scenes/game.tscn" id="2_con2f"]
+[ext_resource type="AudioStream" uid="uid://b7lfjx4c32iku" path="res://music/singularity_calm.mp3" id="4_mhnvy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4h3mk"]
 bg_color = Color(0.015553, 0.0706398, 0.139202, 1)
@@ -64,3 +65,8 @@ text = "SPACE To Play
 ESC to Quit"
 label_settings = SubResource("LabelSettings_yqeox")
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mhnvy")
+volume_db = -28.06
+autoplay = true
