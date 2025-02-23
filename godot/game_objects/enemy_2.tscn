@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ccw4ax373njdf" path="res://scripts/enemy.gd" id="1_d3d7c"]
 [ext_resource type="PackedScene" uid="uid://fflvvbkq6cur" path="res://game_objects/explosion.tscn" id="2_x2w6d"]
-[ext_resource type="Texture2D" uid="uid://oxl6gv2f8e4f" path="res://sprites/enemy001.png" id="3_fvb53"]
-[ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="4_x2w6d"]
+[ext_resource type="Texture2D" uid="uid://d18cln6g7h351" path="res://sprites/enemy002.png" id="3_x2w6d"]
+[ext_resource type="Script" path="res://scripts/life.gd" id="4_x2w6d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0o6d6"]
 radius = 14.3178
@@ -56,8 +56,7 @@ metadata/_custom_type_script = "uid://ccw4ax373njdf"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("3_fvb53")
+texture = ExtResource("3_x2w6d")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

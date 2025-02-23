@@ -14,8 +14,6 @@ func mine(to_mine: float) -> Array:
 	
 	amount -= mine_amount
 	
-	print("Mined ", mine_amount, " with remaining ", amount)
-
 	if is_equal_approx(amount, 0.0):
 		queue_free()
 		
