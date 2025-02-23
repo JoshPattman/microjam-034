@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_nhp80"]
 [ext_resource type="Texture2D" uid="uid://b15ewfavom2mn" path="res://sprites/blackhole001.png" id="2_2fgl8"]
-[ext_resource type="Script" path="res://scripts/black_hole.gd" id="3_dy8lm"]
+[ext_resource type="Script" uid="uid://43pj2c80awim" path="res://scripts/black_hole.gd" id="3_dy8lm"]
 [ext_resource type="Script" uid="uid://pbr77i1ed5mv" path="res://scripts/enemy_avoid.gd" id="4_cjxyd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjxyd"]
@@ -30,7 +30,8 @@ scale_curve = SubResource("CurveTexture_cjxyd")
 [node name="Blackhole" type="Node2D"]
 script = ExtResource("1_nhp80")
 slow_mult = 0.1
-slow_range = 600
+slow_range = 800
+pull_range = 800.0
 metadata/_custom_type_script = "uid://vjj0eerp052v"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
