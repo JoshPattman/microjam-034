@@ -60,7 +60,6 @@ libraries = {
 autoplay = "rotate"
 
 [node name="TurretShooter" parent="." instance=ExtResource("4_51j1b")]
-visible = false
 
 [node name="Life" type="Node" parent="."]
 script = ExtResource("5_fms4r")

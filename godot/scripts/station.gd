@@ -11,6 +11,7 @@ func _ready() -> void:
 	var life = Life.get_life_script(self)
 	if life != null:
 		life.on_die.connect(_on_die)
+	$TurretShooter/Sprite2D.queue_free()
 
 func _process(delta: float) -> void:
 	if current_ship == null:
