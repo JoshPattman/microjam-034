@@ -16,3 +16,9 @@ func _process(delta: float) -> void:
 		current_ship.position = position
 		add_sibling(current_ship)
 	$AnimationPlayer.speed_scale = CustomRigidbody2D.get_global_dt_mult()
+	
+	var dnbs = get_tree().get_nodes_in_group("destroy_near_base")
+	for d in dnbs:
+		if d is Node2D:
+			if d.global_position.distance_squared_to(global_position) < 50*50:
+				d.queue_free()
