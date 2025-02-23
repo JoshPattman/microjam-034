@@ -25,11 +25,16 @@ var recalc_avoids_timer: float = 0.0
 var recalc_avoids_every: float = 0.25
 
 func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
-	blow_up()
+	var other_life = Life.get_life_script(other)
+	if other_life != null:
+		other_life.damage(1)
 
 func _ready() -> void:
 	add_to_group("enemies")
 	recalc_avoids_timer = randf_range(0, recalc_avoids_every)
+	var life = Life.get_life_script(self)
+	if life != null:
+		life.on_die.connect(blow_up)
 
 func _custom_process(delta: float) -> void:
 	$AnimationPlayer.speed_scale = CustomRigidbody2D.get_global_dt_mult()
@@ -82,11 +87,6 @@ func _custom_process(delta: float) -> void:
 	target_direction = d_target*k_targeting + d_avoid*k_avoiding + d_separate*k_separate
 	if target_direction.length() > 1:
 		target_direction = target_direction.normalized()
-	
-	if current_target != null:
-		if is_kamikazee:
-			if (global_position - current_target.global_position).length() < kamikazee_range:
-				blow_up(true)
 
 func blow_up(damage_target:bool = false):
 	var exp = kamikazee_explosion.instantiate()

@@ -34,8 +34,11 @@ func _ready() -> void:
 	add_to_group("player")
 	add_to_group("enemy_targets")
 	$MiningTimer.timeout.connect(_mining_timer)
+	var life = Life.get_life_script(self)
+	if life != null:
+		life.on_die.connect(_blow_up)
 
-func blow_up() -> void:
+func _blow_up() -> void:
 	var explosion_instance = explosion.instantiate()
 	if explosion_instance is Node2D:
 		explosion_instance.position = position
@@ -45,10 +48,9 @@ func blow_up() -> void:
 	queue_free()
 
 func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
-	if other is Player:
-		return
-	other.print_tree()
-	blow_up()
+	var other_life = Life.get_life_script(other)
+	if other_life != null:
+		other_life.damage(1)
 
 func _custom_physics_process(delta: float) -> void:
 	var booster = 0.0
