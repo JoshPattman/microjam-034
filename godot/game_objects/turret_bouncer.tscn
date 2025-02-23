@@ -59,6 +59,7 @@ hframes = 3
 
 [node name="Life" type="Node" parent="."]
 script = ExtResource("3_w1mfm")
+initial_life = 3
 metadata/_custom_type_script = "uid://bfk8htwmce2hg"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
