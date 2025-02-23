@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnv7i55ocbrob"]
+[gd_scene load_steps=5 format=3 uid="uid://bnv7i55ocbrob"]
 
 [ext_resource type="Script" uid="uid://dfaqnj6r52slx" path="res://scripts/turret.gd" id="1_oc61v"]
+[ext_resource type="PackedScene" uid="uid://bvkjss1fbth2p" path="res://game_objects/pusher_td.tscn" id="2_tsg0k"]
 
 [sub_resource type="Gradient" id="Gradient_4nm3i"]
 colors = PackedColorArray(0.602381, 0, 0.100348, 1, 1, 1, 1, 1)
@@ -10,7 +11,13 @@ gradient = SubResource("Gradient_4nm3i")
 fill_from = Vector2(0.273504, 0.777778)
 
 [node name="TurretBouncer" type="Node2D"]
+position = Vector2(0, -1)
 script = ExtResource("1_oc61v")
+range = 400.0
+shot_delay = 6.0
+is_single_shot = false
+is_pusher = true
+push_prefab = ExtResource("2_tsg0k")
 metadata/_custom_type_script = "uid://dfaqnj6r52slx"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
