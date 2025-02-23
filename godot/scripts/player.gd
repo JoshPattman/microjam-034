@@ -146,7 +146,12 @@ func _mining_timer():
 		mined.emit(mine_response[1])
 		
 		if mine_response[0]:
+			var exp = explosion.instantiate()
+			if exp is Node2D:
+				exp.global_position = connected_resource.global_position
+				add_sibling(exp)
 			disconnect_to_resource()
+			
 	elif connected_resource is SpecialResourceSource:
 		if connected_resource.boost > 0:
 			var game_controller: Game = get_tree().get_first_node_in_group("game_controller")
