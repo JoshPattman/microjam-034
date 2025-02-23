@@ -1,8 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://8w4qxf6yifmj"]
+[gd_scene load_steps=26 format=3 uid="uid://8w4qxf6yifmj"]
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
-[ext_resource type="Script" path="res://scripts/spawn_group.gd" id="2_0tnpc"]
+[ext_resource type="Script" uid="uid://os1jkm3q84or" path="res://scripts/spawn_group.gd" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://rm50arymrac8" path="res://game_objects/station.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ckg8n7tp8qsca" path="res://game_objects/enemy_2.tscn" id="4_ca42v"]
 [ext_resource type="Texture2D" uid="uid://djmwl2eifidgp" path="res://sprites/background-base001.png" id="4_dinhu"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://dvou36u6k0wdw" path="res://game_objects/enemy_1.tscn" id="6_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://cwdotvjapwnqb" path="res://sprites/background003.png" id="7_trtic"]
 [ext_resource type="PackedScene" uid="uid://bbqhnh0lw7fmk" path="res://game_objects/whitehole.tscn" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://67ykeat1d8xh" path="res://sprites/top-bar001.png" id="14_264po"]
+[ext_resource type="Texture2D" uid="uid://bm4o81stbode0" path="res://sprites/slider001.png" id="15_1kice"]
 [ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="15_rysoc"]
 
 [sub_resource type="Resource" id="Resource_vtaks"]
@@ -111,6 +113,28 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="TopBar" type="TextureRect" parent="PlayerCamera/UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture = ExtResource("14_264po")
+
+[node name="Slider" type="TextureRect" parent="PlayerCamera/UI/TopBar"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 124.0
+offset_top = 39.0
+offset_right = 164.0
+offset_bottom = 79.0
+scale = Vector2(0.199494, 0.443533)
+texture = ExtResource("15_1kice")
+
 [node name="Resources" type="HBoxContainer" parent="PlayerCamera/UI"]
 layout_mode = 1
 anchors_preset = 1
@@ -138,13 +162,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -66.0
-offset_right = 77.0
-offset_bottom = 40.0
+offset_left = -75.0
+offset_top = 4.0
+offset_right = 68.0
+offset_bottom = 44.0
 grow_horizontal = 2
 
 [node name="Prefix" type="Label" parent="PlayerCamera/UI/TimeDilation"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Time Dilation:"
 label_settings = SubResource("LabelSettings_rysoc")
 
