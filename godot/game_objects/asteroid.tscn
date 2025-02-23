@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://63kt5ovadna1"]
+[gd_scene load_steps=5 format=3 uid="uid://63kt5ovadna1"]
 
 [ext_resource type="Script" uid="uid://c02xeeury57m0" path="res://scripts/asteroid.gd" id="1_qx4ml"]
 [ext_resource type="Texture2D" uid="uid://doney3katwmus" path="res://sprites/asteroid001.png" id="2_pevbk"]
+[ext_resource type="Script" uid="uid://pbr77i1ed5mv" path="res://scripts/enemy_avoid.gd" id="3_pevbk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyswn"]
 radius = 16.0
@@ -16,3 +17,9 @@ texture = ExtResource("2_pevbk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nyswn")
+
+[node name="EnemyAvoid" type="Node2D" parent="."]
+script = ExtResource("3_pevbk")
+radius = 125.0
+weight = 0.2
+metadata/_custom_type_script = "uid://pbr77i1ed5mv"
