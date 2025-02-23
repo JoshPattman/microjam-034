@@ -6,6 +6,7 @@ class_name Life
 @export var debug: bool = false
 
 signal on_die
+signal on_hurt
 
 var current_life: float = 0
 
@@ -18,6 +19,8 @@ func damage(amount: float) -> void:
 	if debug:
 		print(current_life," - ",amount)
 	current_life -= amount
+	if amount > 0:
+		on_hurt.emit(current_life)
 	if current_life <= 0:
 		current_life = 0
 		on_die.emit()
