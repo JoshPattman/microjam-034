@@ -16,8 +16,13 @@ var target_direction: Vector2
 @export var kamikazee_range: float = 40
 @export var kamikazee_explosion: PackedScene
 
+var things_to_avoid: Array[EnemyAvoid] = []
+var recalc_avoids_timer: float = 0.0
+var recalc_avoids_every: float = 0.25
+
 func _ready() -> void:
 	add_to_group("enemies")
+	recalc_avoids_timer = randf_range(0, recalc_avoids_every)
 
 func _custom_process(delta: float) -> void:
 	if current_target == null:
@@ -27,10 +32,18 @@ func _custom_process(delta: float) -> void:
 	if current_target != null:
 		d_target = (current_target.global_position - global_position).normalized()
 	
-	var avoids = get_tree().get_nodes_in_group("enemy_avoid")
+	if recalc_avoids_timer >= recalc_avoids_every:
+		var avoids = get_tree().get_nodes_in_group("enemy_avoid")
+		things_to_avoid.clear()
+		for a in avoids:
+			if a is EnemyAvoid:
+				things_to_avoid.append(a)
+		recalc_avoids_timer = 0
+	recalc_avoids_timer += delta
+	
 	var d_avoid = Vector2()
-	for a in avoids:
-		if a is EnemyAvoid:
+	for a in things_to_avoid:
+		if a != null && a is EnemyAvoid:
 			var a_delta = a.global_position - global_position
 			var a_dist = a_delta.length()
 			if a_dist > a.radius:
