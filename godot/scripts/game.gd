@@ -16,6 +16,8 @@ var time_since_last_enemy: float = 0.0
 @export var shooter_prefab: PackedScene
 @export var bouncer_prefab: PackedScene
 
+@export var turret_cost: float = 1.0
+
 var player_resources: float = 0.0:
 	set(new):
 		$PlayerCamera/UI/Resources/Label.text = str(new)
@@ -93,12 +95,12 @@ func _get_random_asteroid_spawn_loc() -> Vector2:
 	return all_spawn_locations[randi_range(0, len(all_spawn_locations)-1)].global_position
 
 func _handle_placing() -> void:
-	if Input.is_action_just_pressed("player_place_shooter") && player_resources >= 5:
+	if Input.is_action_just_pressed("player_place_shooter") && player_resources >= turret_cost:
 		_place(shooter_prefab)
-		player_resources -= 5
-	if Input.is_action_just_pressed("player_place_bouncer") && player_resources >= 3:
+		player_resources -= turret_cost
+	if Input.is_action_just_pressed("player_place_bouncer") && player_resources >= turret_cost:
 		_place(bouncer_prefab)
-		player_resources -= 3
+		player_resources -= turret_cost
 
 func _place(tower: PackedScene) -> Node2D:
 	var player: Player = get_tree().get_first_node_in_group("player")

@@ -62,7 +62,6 @@ z_index = -2
 texture_filter = 1
 texture_repeat = 2
 position = Vector2(9, -14)
-points = PackedVector2Array(0, 0)
 width = 6.0
 texture = ExtResource("4_7o085")
 texture_mode = 1
