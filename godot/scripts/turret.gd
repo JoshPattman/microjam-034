@@ -3,7 +3,9 @@ extends Node2D
 class_name Turret
 
 @export var range: float = 200
-@export var shot_delay: float = 1.0
+@export var shot_delay: float = 1.0:
+	set(new):
+		$AnimationPlayer.speed_scale = 1.0 / shot_delay
 
 @export var add_to_targets: bool = true
 
@@ -27,4 +29,5 @@ func _process(delta: float) -> void:
 		if time_since_last_shot > shot_delay:
 			time_since_last_shot = 0.0
 			closest_enemy.blow_up()
+			$AnimationPlayer.play("charge")
 	time_since_last_shot += delta * CustomRigidbody2D.get_global_dt_mult()
