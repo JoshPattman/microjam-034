@@ -83,6 +83,8 @@ func _spawn_asteroid(at: Vector2, has_res: bool, velocity: Vector2, scale: float
 	instance.global_position = at
 	instance.real_velocity = velocity
 	instance.scale *= scale
+	if instance is ResourceAsteroid:
+		instance.reset_resources()
 	$Asteroids.add_child(instance)
 	return instance
 
