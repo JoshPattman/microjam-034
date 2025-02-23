@@ -130,6 +130,7 @@ func _handle_resource_connection():
 func _mining_timer():
 	if not connected_resource or connected_resource.is_queued_for_deletion():
 		disconnect_to_resource()
+		return
 	
 	var mine_response: Array = connected_resource.mine(mine_amount)
 	
