@@ -84,6 +84,16 @@ func _process(delta: float) -> void:
 		wave_counter += 1
 	wave_timer += delta * CustomRigidbody2D.get_global_dt_mult()
 	
+	
+	$PlayerCamera/UI/TopBar/Slider.position.x = remap(
+		log(CustomRigidbody2D.get_global_dt_mult()) / log(10),
+		1,
+		-1,
+		$PlayerCamera/UI/TopBar/BlackholeAnchor.position.x,
+		$PlayerCamera/UI/TopBar/WhiteholeAnchor.position.x
+	) - $PlayerCamera/UI/TopBar/Slider.size.x / 2
+	
+	
 	if !is_equal_approx(1.0, CustomRigidbody2D.get_global_dt_mult()):
 		$PlayerCamera/UI/TimeDilation.visible = true
 		$PlayerCamera/UI/TimeDilation/Amount.text = "%.3f" % CustomRigidbody2D.get_global_dt_mult()
