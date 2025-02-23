@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://67ykeat1d8xh" path="res://sprites/top-bar001.png" id="14_264po"]
 [ext_resource type="Texture2D" uid="uid://bm4o81stbode0" path="res://sprites/slider001.png" id="15_1kice"]
 [ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="15_rysoc"]
-[ext_resource type="Script" uid="uid://or5q0cjyks87" path="res://scenes/compass.gd" id="18_37s47"]
+[ext_resource type="Script" uid="uid://or5q0cjyks87" path="res://scripts/compass.gd" id="18_37s47"]
 [ext_resource type="Texture2D" uid="uid://bm7ehqg3dvxst" path="res://sprites/compass.png" id="19_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://j2xjquf5x2u" path="res://sprites/resources_icon.png" id="19_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://bdst5yk1cqalx" path="res://sprites/boost_icon.png" id="20_e1j6l"]
@@ -284,3 +284,12 @@ position = Vector2(-3089, -1954)
 stream = ExtResource("24_e1j6l")
 volume_db = -10.0
 autoplay = true
+
+[node name="Enemy" parent="." instance=ExtResource("6_u5sy4")]
+position = Vector2(-202, 72)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_u5sy4")]
+position = Vector2(-73, 174)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_ca42v")]
+position = Vector2(-253, -124)
