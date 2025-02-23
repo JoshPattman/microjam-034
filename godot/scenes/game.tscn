@@ -1,10 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://8w4qxf6yifmj"]
+[gd_scene load_steps=31 format=3 uid="uid://8w4qxf6yifmj"]
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://os1jkm3q84or" path="res://scripts/spawn_group.gd" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://rm50arymrac8" path="res://game_objects/station.tscn" id="2_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://pckc8tu22oqv" path="res://scenes/game_over.tscn" id="2_pl11u"]
 [ext_resource type="PackedScene" uid="uid://ckg8n7tp8qsca" path="res://game_objects/enemy_2.tscn" id="4_ca42v"]
 [ext_resource type="Texture2D" uid="uid://djmwl2eifidgp" path="res://sprites/background-base001.png" id="4_dinhu"]
 [ext_resource type="PackedScene" uid="uid://7pkivl6g6mek" path="res://game_objects/turret_shooter.tscn" id="4_kvpfn"]
@@ -59,7 +58,6 @@ outline_size = 3
 [node name="Game" type="Node2D"]
 position = Vector2(0, -1)
 script = ExtResource("1_iywne")
-game_over_scene = ExtResource("2_pl11u")
 shooter_prefab = ExtResource("4_kvpfn")
 bouncer_prefab = ExtResource("5_dinhu")
 mine_prefab = ExtResource("6_ir15t")
