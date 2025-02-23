@@ -61,6 +61,7 @@ script = ExtResource("1_iywne")
 shooter_prefab = ExtResource("4_kvpfn")
 bouncer_prefab = ExtResource("5_dinhu")
 mine_prefab = ExtResource("6_ir15t")
+bouncer_turret_cost = 0.0
 enemy_spawn_groups = Array[ExtResource("2_0tnpc")]([SubResource("Resource_vtaks"), SubResource("Resource_kvpfn"), SubResource("Resource_rysoc")])
 
 [node name="Background" type="Node2D" parent="."]

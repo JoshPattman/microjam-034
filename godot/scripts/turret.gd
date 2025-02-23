@@ -8,6 +8,7 @@ class_name Turret
 	set(new):
 		if $AnimationPlayer != null:
 			$AnimationPlayer.speed_scale = 1.0 / shot_delay
+		shot_delay = new
 @export var is_single_shot: bool = true
 @export var is_pusher: bool = false
 @export var push_prefab: PackedScene
@@ -40,7 +41,6 @@ func _process(delta: float) -> void:
 	
 	if closest_dist_squared < range*range:
 		if time_since_last_shot > shot_delay:
-			time_since_last_shot = 0.0
 			if is_single_shot:
 				var lc = Life.get_life_script(closest_enemy)
 				if lc != null:
@@ -55,12 +55,17 @@ func _process(delta: float) -> void:
 					if current_push_prefab != null:
 						current_push_prefab.queue_free()
 					current_push_prefab = pu
-					add_child(current_push_prefab)
+					add_sibling(current_push_prefab)
+				print(current_push_prefab.global_position)
+				$AnimationPlayer.speed_scale = 5
 			else:
 				print("useless turret")
+			time_since_last_shot = 0.0
 	
 	if current_push_prefab != null && pushing_time_left <= 0:
 		current_push_prefab.queue_free()
+		current_push_prefab = null
+		$AnimationPlayer.speed_scale = 1
 	
 	var rdelta = delta * CustomRigidbody2D.get_global_dt_mult()
 	time_since_last_shot += rdelta
