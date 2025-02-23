@@ -38,6 +38,7 @@ func _ready() -> void:
 	var life = Life.get_life_script(self)
 	if life != null:
 		life.on_die.connect(_blow_up)
+		life.on_hurt.connect(_on_hurt)
 
 func _blow_up() -> void:
 	var explosion_instance = explosion.instantiate()
@@ -154,3 +155,13 @@ func _mining_timer():
 			var lc = Life.get_life_script(self)
 			lc.damage(-connected_resource.health)
 			print(connected_resource.health)
+
+func _on_hurt(to: float) -> void:
+	_show_bubble()
+
+func _show_bubble() -> void:
+	var bubble: CanvasItem = $Bubble
+	var tw = create_tween()
+	bubble.modulate = Color(1,1,1,1)
+	tw.tween_property(bubble, "modulate", Color(1,1,1,0), 0.5)
+	tw.play()
