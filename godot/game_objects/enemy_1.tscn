@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ccw4ax373njdf" path="res://scripts/enemy.gd" id="1_0o6d6"]
 [ext_resource type="PackedScene" uid="uid://fflvvbkq6cur" path="res://game_objects/explosion.tscn" id="2_k1174"]
 [ext_resource type="Texture2D" uid="uid://oxl6gv2f8e4f" path="res://sprites/enemy001.png" id="3_ettaq"]
-[ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="4_k1174"]
+[ext_resource type="Script" path="res://scripts/life.gd" id="4_k1174"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0o6d6"]
 radius = 7.0
