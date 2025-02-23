@@ -46,6 +46,7 @@ func _process(delta: float) -> void:
 				if lc != null:
 					lc.damage(1)
 				$AnimationPlayer.play("charge")
+				$FirePlayer.play()
 				_handle_shot(closest_enemy.global_position)
 			elif is_pusher:
 				pushing_time_left = push_for
