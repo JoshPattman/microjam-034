@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="microjam-034"
+config/name="temporal-engineer"
 run/main_scene="uid://bxnmkuax7eu6p"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://b15ewfavom2mn"
 
 [display]
 
