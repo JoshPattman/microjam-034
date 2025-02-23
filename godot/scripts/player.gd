@@ -18,8 +18,8 @@ signal died
 @export var explosion: PackedScene
 
 @export var collection_radius_sqaure: float = 40000
-@export var mine_rate: float = 1.0
-@export var mine_amount: float = 1.0
+@export var mine_rate: float = 0.5
+@export var mine_amount: float = 0.5
 var connected_resource: ResourceAsteroid
 
 
@@ -67,10 +67,6 @@ func _custom_physics_process(delta: float) -> void:
 		rotater += 1
 	if Input.is_action_pressed("player_break", true):
 		breaker = 1
-	if Input.is_action_just_pressed("player_boost", true):
-		is_boost = true
-	if Input.is_action_just_released("player_boost", true):
-		is_boost = false
 		
 	if Input.is_action_just_pressed("player_collect"):
 		connect_to_resource()

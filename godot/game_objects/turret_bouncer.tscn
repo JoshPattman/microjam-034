@@ -1,15 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnv7i55ocbrob"]
+[gd_scene load_steps=8 format=3 uid="uid://bnv7i55ocbrob"]
 
 [ext_resource type="Script" uid="uid://dfaqnj6r52slx" path="res://scripts/turret.gd" id="1_oc61v"]
 [ext_resource type="PackedScene" uid="uid://bvkjss1fbth2p" path="res://game_objects/pusher_td.tscn" id="2_tsg0k"]
-[ext_resource type="Script" uid="uid://bfk8htwmce2hg" path="res://scripts/life.gd" id="3_w1mfm"]
+[ext_resource type="Texture2D" uid="uid://dadufbw0q2in6" path="res://sprites/turret002.png" id="3_1f0ak"]
+[ext_resource type="Script" path="res://scripts/life.gd" id="3_w1mfm"]
 
-[sub_resource type="Gradient" id="Gradient_4nm3i"]
-colors = PackedColorArray(0.602381, 0, 0.100348, 1, 1, 1, 1, 1)
+[sub_resource type="Animation" id="Animation_rwrqg"]
+resource_name = "rotate"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jiabh"]
-gradient = SubResource("Gradient_4nm3i")
-fill_from = Vector2(0.273504, 0.777778)
+[sub_resource type="Animation" id="Animation_md8tu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rwt0g"]
+_data = {
+&"RESET": SubResource("Animation_md8tu"),
+&"rotate": SubResource("Animation_rwrqg")
+}
 
 [node name="TurretBouncer" type="Node2D"]
 position = Vector2(0, -1)
@@ -23,8 +55,16 @@ push_for = 0.0
 metadata/_custom_type_script = "uid://dfaqnj6r52slx"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_jiabh")
+texture_filter = 1
+texture = ExtResource("3_1f0ak")
+hframes = 3
 
 [node name="Life" type="Node" parent="."]
 script = ExtResource("3_w1mfm")
 metadata/_custom_type_script = "uid://bfk8htwmce2hg"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rwt0g")
+}
+autoplay = "rotate"

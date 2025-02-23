@@ -18,7 +18,11 @@ func mine(to_mine: float) -> Array:
 
 	if is_equal_approx(amount, 0.0):
 		queue_free()
-	
+		
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color.RED, 0.1)
+	tween.tween_callback(self.set_modulate.bind(Color.WHITE))
+
 	return [is_equal_approx(amount, 0.0), mine_amount]
 
 func reset_resources() -> void:
