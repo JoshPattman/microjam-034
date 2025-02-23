@@ -94,8 +94,11 @@ func _custom_physics_process(delta: float) -> void:
 	if Input.is_action_pressed("player_back",true) or Input.is_action_pressed("player_forward",true):
 		if !$ThrustPlayer.playing:
 			$ThrustPlayer.play()
+		if !$AnimationPlayer.is_playing():
+			$AnimationPlayer.play("thrust")
 	else:
 		$ThrustPlayer.stop()
+		$AnimationPlayer.play("RESET")
 
 	if Input.is_action_pressed("player_left", true):
 		rotater -= 1
