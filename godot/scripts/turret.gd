@@ -6,7 +6,8 @@ class_name Turret
 @export var range: float = 200
 @export var shot_delay: float = 1.0:
 	set(new):
-		$AnimationPlayer.speed_scale = 1.0 / shot_delay
+		if $AnimationPlayer != null:
+			$AnimationPlayer.speed_scale = 1.0 / shot_delay
 @export var is_single_shot: bool = true
 @export var is_pusher: bool = false
 @export var push_prefab: PackedScene
@@ -40,6 +41,7 @@ func _process(delta: float) -> void:
 			if is_single_shot:
 				closest_enemy.blow_up()
 				$AnimationPlayer.play("charge")
+				_handle_shot(closest_enemy.global_position)
 			elif is_pusher:
 				pushing_time_left = push_for
 				var pu = push_prefab.instantiate()
@@ -59,3 +61,14 @@ func _process(delta: float) -> void:
 	var rdelta = delta * CustomRigidbody2D.get_global_dt_mult()
 	time_since_last_shot += rdelta
 	pushing_time_left -= rdelta
+
+	
+func _handle_shot(pos: Vector2):
+	$Shot.visible = true
+	$Shot.modulate.a = 1.0
+	$Shot.clear_points()
+	$Shot.add_point($Shot.to_local(self.global_position))
+	$Shot.add_point($Shot.to_local(pos))
+	var tween = get_tree().create_tween()
+	tween.tween_property($Shot, "modulate:a", 0.0, 0.2).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(func(): $Shot.visible = false)
