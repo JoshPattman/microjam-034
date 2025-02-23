@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://8w4qxf6yifmj"]
+[gd_scene load_steps=32 format=3 uid="uid://8w4qxf6yifmj"]
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://os1jkm3q84or" path="res://scripts/spawn_group.gd" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://rm50arymrac8" path="res://game_objects/station.tscn" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bnfq68siymux" path="res://scenes/game_over.tscn" id="2_pl11u"]
 [ext_resource type="PackedScene" uid="uid://ckg8n7tp8qsca" path="res://game_objects/enemy_2.tscn" id="4_ca42v"]
 [ext_resource type="Texture2D" uid="uid://djmwl2eifidgp" path="res://sprites/background-base001.png" id="4_dinhu"]
 [ext_resource type="PackedScene" uid="uid://7pkivl6g6mek" path="res://game_objects/turret_shooter.tscn" id="4_kvpfn"]
@@ -18,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://67ykeat1d8xh" path="res://sprites/top-bar001.png" id="14_264po"]
 [ext_resource type="Texture2D" uid="uid://bm4o81stbode0" path="res://sprites/slider001.png" id="15_1kice"]
 [ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="15_rysoc"]
-[ext_resource type="Script" uid="uid://or5q0cjyks87" path="res://scenes/compass.gd" id="18_37s47"]
+[ext_resource type="Script" uid="uid://or5q0cjyks87" path="res://scripts/compass.gd" id="18_37s47"]
 [ext_resource type="Texture2D" uid="uid://bm7ehqg3dvxst" path="res://sprites/compass.png" id="19_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://j2xjquf5x2u" path="res://sprites/resources_icon.png" id="19_e1j6l"]
 [ext_resource type="AudioStream" uid="uid://c6f71ovttvqix" path="res://song1.wav" id="20_1kice"]
@@ -58,6 +59,7 @@ outline_size = 3
 [node name="Game" type="Node2D"]
 position = Vector2(0, -1)
 script = ExtResource("1_iywne")
+game_over_scene = ExtResource("2_pl11u")
 shooter_prefab = ExtResource("4_kvpfn")
 bouncer_prefab = ExtResource("5_dinhu")
 mine_prefab = ExtResource("6_ir15t")
@@ -284,3 +286,12 @@ position = Vector2(-3089, -1954)
 stream = ExtResource("20_1kice")
 volume_db = -34.492
 autoplay = true
+
+[node name="Enemy" parent="." instance=ExtResource("6_u5sy4")]
+position = Vector2(-202, 72)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_u5sy4")]
+position = Vector2(-73, 174)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_ca42v")]
+position = Vector2(-253, -124)

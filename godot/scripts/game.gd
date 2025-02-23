@@ -7,6 +7,9 @@ var time_since_last_asteroid: float = 0.0
 
 var resource_asteroid_scene = preload("res://game_objects/resource_asteroid.tscn")
 
+@export_category("Scenes")
+@export var game_over_scene: PackedScene
+
 @export_category("Turrets")
 @export var shooter_prefab: PackedScene
 @export var bouncer_prefab: PackedScene
@@ -46,7 +49,11 @@ func _ready() -> void:
 	)
 	_spawn_initial_asteroids()
 	add_to_group("game_controller")
-	
+	$Station.on_station_exploded.connect(_on_die)
+
+func _on_die() -> void:
+	get_tree().change_scene_to_packed(game_over_scene)
+
 func _process(delta: float) -> void:
 	time_since_last_asteroid += delta * CustomRigidbody2D.get_global_dt_mult()
 	if time_since_last_asteroid > asteroid_frequency:
