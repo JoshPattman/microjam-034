@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://7pkivl6g6mek"]
+[gd_scene load_steps=7 format=3 uid="uid://7pkivl6g6mek"]
 
 [ext_resource type="Script" uid="uid://dfaqnj6r52slx" path="res://scripts/turret.gd" id="1_4nm3i"]
 [ext_resource type="Texture2D" uid="uid://c7grhoulkexdt" path="res://sprites/turret001.png" id="2_jiabh"]
+[ext_resource type="Texture2D" uid="uid://dwk283kp0qowb" path="res://sprites/tether001.png" id="2_ssbwd"]
 
 [sub_resource type="Animation" id="Animation_jiabh"]
 resource_name = "charge"
@@ -42,6 +43,12 @@ _data = {
 [node name="TurretShooter" type="Node2D"]
 script = ExtResource("1_4nm3i")
 metadata/_custom_type_script = "uid://dfaqnj6r52slx"
+
+[node name="Shot" type="Line2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("2_ssbwd")
+texture_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

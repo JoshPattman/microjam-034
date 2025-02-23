@@ -115,7 +115,8 @@ func _handle_resource_connection():
 	if not connected_resource:
 		return
 		
-	if self.global_position.distance_squared_to(connected_resource.global_position) > collection_radius_sqaure:
+	var distance_squared = self.global_position.distance_squared_to(connected_resource.global_position)
+	if  distance_squared > collection_radius_sqaure:
 		disconnect_to_resource()
 		return
 	
@@ -123,7 +124,10 @@ func _handle_resource_connection():
 	tether.clear_points()
 	tether.add_point(tether.to_local(self.global_position))
 	tether.add_point(tether.to_local(connected_resource.global_position))
-
+	
+	var break_ratio = remap(distance_squared, 0, collection_radius_sqaure, 0, 1)
+	tether.modulate.b = 1 - break_ratio
+	tether.modulate.g = 1 - break_ratio
 	
 func _mining_timer():
 	if not connected_resource or connected_resource.is_queued_for_deletion():
