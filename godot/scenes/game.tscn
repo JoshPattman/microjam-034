@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://8w4qxf6yifmj"]
+[gd_scene load_steps=24 format=3 uid="uid://8w4qxf6yifmj"]
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dvou36u6k0wdw" path="res://game_objects/enemy_1.tscn" id="6_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://cwdotvjapwnqb" path="res://sprites/background003.png" id="7_trtic"]
 [ext_resource type="PackedScene" uid="uid://bbqhnh0lw7fmk" path="res://game_objects/whitehole.tscn" id="7_u5sy4"]
+[ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="15_rysoc"]
 
 [sub_resource type="Resource" id="Resource_vtaks"]
 script = ExtResource("2_0tnpc")
@@ -31,6 +32,15 @@ metadata/_custom_type_script = "uid://os1jkm3q84or"
 script = ExtResource("2_0tnpc")
 items = Array[PackedScene]([ExtResource("4_ca42v")])
 metadata/_custom_type_script = "uid://os1jkm3q84or"
+
+[sub_resource type="LabelSettings" id="LabelSettings_ssvqc"]
+font = ExtResource("15_rysoc")
+
+[sub_resource type="LabelSettings" id="LabelSettings_rysoc"]
+font = ExtResource("15_rysoc")
+
+[sub_resource type="LabelSettings" id="LabelSettings_264po"]
+font = ExtResource("15_rysoc")
 
 [node name="Game" type="Node2D"]
 position = Vector2(0, -1)
@@ -121,30 +131,47 @@ texture = ExtResource("5_u5sy4")
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0.0"
+label_settings = SubResource("LabelSettings_ssvqc")
 
 [node name="TimeDilation" type="HBoxContainer" parent="PlayerCamera/UI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -67.0
-offset_top = 14.0
-offset_right = 68.0
-offset_bottom = 54.0
+offset_left = -66.0
+offset_right = 77.0
+offset_bottom = 40.0
 grow_horizontal = 2
 
 [node name="Prefix" type="Label" parent="PlayerCamera/UI/TimeDilation"]
 layout_mode = 2
 text = "Time Dilation:"
+label_settings = SubResource("LabelSettings_rysoc")
 
 [node name="Amount" type="Label" parent="PlayerCamera/UI/TimeDilation"]
 layout_mode = 2
 text = "1.0"
+label_settings = SubResource("LabelSettings_264po")
 
-[node name="Node" type="Node" parent="."]
+[node name="Holes" type="Node" parent="."]
 
-[node name="Blackhole" parent="Node" instance=ExtResource("6_p57ef")]
+[node name="Blackhole" parent="Holes" instance=ExtResource("6_p57ef")]
 position = Vector2(-1, -1113)
 
-[node name="Whitehole" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(-8, 1398)
+[node name="Whitehole" parent="Holes" instance=ExtResource("7_u5sy4")]
+position = Vector2(-8, 1397)
+
+[node name="Blackhole2" parent="Holes" instance=ExtResource("6_p57ef")]
+position = Vector2(2770, -652)
+
+[node name="Whitehole2" parent="Holes" instance=ExtResource("7_u5sy4")]
+position = Vector2(1948, -2435)
+
+[node name="Blackhole3" parent="Holes" instance=ExtResource("6_p57ef")]
+position = Vector2(-2529, 740)
+
+[node name="Blackhole4" parent="Holes" instance=ExtResource("6_p57ef")]
+position = Vector2(3856, 1513)
+
+[node name="Blackhole5" parent="Holes" instance=ExtResource("6_p57ef")]
+position = Vector2(-2883, -3102)
