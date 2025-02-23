@@ -8,6 +8,9 @@ var current_ship: Node2D
 
 func _ready() -> void:
 	add_to_group("enemy_targets")
+	var life = Life.get_life_script(self)
+	if life != null:
+		life.on_die.connect(_on_die)
 
 func _process(delta: float) -> void:
 	if current_ship == null:
@@ -22,3 +25,6 @@ func _process(delta: float) -> void:
 		if d is Node2D:
 			if d.global_position.distance_squared_to(global_position) < 50*50:
 				d.queue_free()
+
+func _on_die() -> void:
+	print("You lose")

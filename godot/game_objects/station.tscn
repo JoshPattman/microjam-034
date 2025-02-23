@@ -64,4 +64,5 @@ visible = false
 
 [node name="Life" type="Node" parent="."]
 script = ExtResource("5_fms4r")
+initial_life = 10
 metadata/_custom_type_script = "uid://bfk8htwmce2hg"
