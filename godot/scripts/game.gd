@@ -27,6 +27,8 @@ var resource_asteroid_scene = preload("res://game_objects/resource_asteroid.tscn
 var wave_counter: int = 0
 var wave_timer: float = 0.0
 
+static var last_score: int = 0
+
 var score: int = 0:
 	set(new):
 		var txt = str(new)
@@ -60,6 +62,7 @@ func _ready() -> void:
 	score = 0
 
 func _on_die() -> void:
+	last_score = score
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func _process(delta: float) -> void:
