@@ -45,7 +45,6 @@ func _process(delta: float) -> void:
 			elif is_pusher:
 				pushing_time_left = push_for
 				var pu = push_prefab.instantiate()
-				print("create")
 				if pu is Node2D:
 					pu.global_position = global_position
 					if current_push_prefab != null:
