@@ -69,6 +69,9 @@ func _process(delta: float) -> void:
 	
 	_custom_process(delta)
 
+func _on_blackhole_death() -> void:
+	pass
+
 func _physics_process(delta: float) -> void:
 	var tm = local_time_mult
 	if !maintain_constant_time:
@@ -85,6 +88,7 @@ func _physics_process(delta: float) -> void:
 		scale = t * Vector2(1,1) + (1-t) * Vector2(0.001, 0.001)
 		
 		if bdelta.length() < 10:
+			_on_blackhole_death()
 			queue_free()
 	else:
 		_custom_physics_process(real_delta)
