@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://8w4qxf6yifmj"]
+[gd_scene load_steps=37 format=3 uid="uid://8w4qxf6yifmj"]
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
@@ -19,12 +19,15 @@
 [ext_resource type="Texture2D" uid="uid://bm4o81stbode0" path="res://sprites/slider001.png" id="15_1kice"]
 [ext_resource type="FontFile" uid="uid://dt8xc3g1yr708" path="res://upheavtt.ttf" id="15_rysoc"]
 [ext_resource type="Script" uid="uid://or5q0cjyks87" path="res://scripts/compass.gd" id="18_37s47"]
+[ext_resource type="Texture2D" uid="uid://ci1rddpyfpjap" path="res://sprites/compass-bar001.png" id="18_suyxu"]
 [ext_resource type="Texture2D" uid="uid://bm7ehqg3dvxst" path="res://sprites/compass.png" id="19_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://j2xjquf5x2u" path="res://sprites/resources_icon.png" id="19_e1j6l"]
+[ext_resource type="Texture2D" uid="uid://cmbunhqgd5xop" path="res://sprites/resource-bar001.png" id="19_qnb83"]
 [ext_resource type="Texture2D" uid="uid://bdst5yk1cqalx" path="res://sprites/boost_icon.png" id="20_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://clumteybfdmj4" path="res://sprites/sheild_icon.png" id="21_pl11u"]
 [ext_resource type="Texture2D" uid="uid://duk3xvoddbvns" path="res://sprites/ship_icon.png" id="22_pl11u"]
 [ext_resource type="AudioStream" uid="uid://cdd5qo4kffbcy" path="res://music/Speedier Than Photons.mp3" id="24_e1j6l"]
+[ext_resource type="Texture2D" uid="uid://ccksid86jh7gl" path="res://sprites/score-bar001.png" id="24_sww3w"]
 [ext_resource type="AudioStream" uid="uid://b3xpsfnxqsuri" path="res://sounds/place-tower.ogg" id="25_pl11u"]
 
 [sub_resource type="Resource" id="Resource_vtaks"]
@@ -208,14 +211,25 @@ layout_mode = 2
 text = "1.0"
 label_settings = SubResource("LabelSettings_264po")
 
+[node name="CompassBackground" type="TextureRect" parent="PlayerCamera/UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 64.0
+grow_vertical = 0
+texture = ExtResource("18_suyxu")
+
 [node name="Control" type="Control" parent="PlayerCamera/UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 33.0
+offset_left = 30.0
 offset_top = -29.0
-offset_right = 38.0
+offset_right = 35.0
 offset_bottom = -24.0
 grow_vertical = 0
 script = ExtResource("18_37s47")
@@ -233,90 +247,119 @@ offset_bottom = 15.0
 texture = ExtResource("19_bt5mj")
 stretch_mode = 5
 
-[node name="Stats" type="VBoxContainer" parent="PlayerCamera/UI"]
+[node name="ResourceBar" type="TextureRect" parent="PlayerCamera/UI"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -134.0
-offset_top = 6.0
-offset_right = -6.0
-offset_bottom = 223.0
+offset_left = -156.0
+offset_bottom = 192.0
+grow_horizontal = 0
+texture = ExtResource("19_qnb83")
 
-[node name="Resources" type="HBoxContainer" parent="PlayerCamera/UI/Stats"]
+[node name="Stats" type="VBoxContainer" parent="PlayerCamera/UI/ResourceBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 8.0
+offset_right = -12.0
+offset_bottom = 225.0
+grow_horizontal = 0
+
+[node name="Resources" type="HBoxContainer" parent="PlayerCamera/UI/ResourceBar/Stats"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="PlayerCamera/UI/Stats/Resources"]
+[node name="Label" type="Label" parent="PlayerCamera/UI/ResourceBar/Stats/Resources"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0.0"
 label_settings = SubResource("LabelSettings_ssvqc")
 
-[node name="TextureRect" type="TextureRect" parent="PlayerCamera/UI/Stats/Resources"]
+[node name="TextureRect" type="TextureRect" parent="PlayerCamera/UI/ResourceBar/Stats/Resources"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("19_e1j6l")
 
-[node name="Boost" type="HBoxContainer" parent="PlayerCamera/UI/Stats"]
+[node name="Boost" type="HBoxContainer" parent="PlayerCamera/UI/ResourceBar/Stats"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="PlayerCamera/UI/Stats/Boost"]
+[node name="Label" type="Label" parent="PlayerCamera/UI/ResourceBar/Stats/Boost"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0.0"
 label_settings = SubResource("LabelSettings_ssvqc")
 
-[node name="TextureRect" type="TextureRect" parent="PlayerCamera/UI/Stats/Boost"]
+[node name="TextureRect" type="TextureRect" parent="PlayerCamera/UI/ResourceBar/Stats/Boost"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("20_e1j6l")
 
-[node name="Sheilds" type="HBoxContainer" parent="PlayerCamera/UI/Stats"]
+[node name="Sheilds" type="HBoxContainer" parent="PlayerCamera/UI/ResourceBar/Stats"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="PlayerCamera/UI/Stats/Sheilds"]
+[node name="Label" type="Label" parent="PlayerCamera/UI/ResourceBar/Stats/Sheilds"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0.0"
 label_settings = SubResource("LabelSettings_ssvqc")
 
-[node name="TextureRect" type="TextureRect" parent="PlayerCamera/UI/Stats/Sheilds"]
+[node name="TextureRect" type="TextureRect" parent="PlayerCamera/UI/ResourceBar/Stats/Sheilds"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("21_pl11u")
 
-[node name="Base" type="HBoxContainer" parent="PlayerCamera/UI/Stats"]
+[node name="Base" type="HBoxContainer" parent="PlayerCamera/UI/ResourceBar/Stats"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="PlayerCamera/UI/Stats/Base"]
+[node name="Label" type="Label" parent="PlayerCamera/UI/ResourceBar/Stats/Base"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0.0"
 label_settings = SubResource("LabelSettings_ssvqc")
 
-[node name="TextureRect" type="TextureRect" parent="PlayerCamera/UI/Stats/Base"]
+[node name="TextureRect" type="TextureRect" parent="PlayerCamera/UI/ResourceBar/Stats/Base"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("22_pl11u")
 
-[node name="Score" type="Label" parent="PlayerCamera/UI"]
-layout_mode = 2
+[node name="ScoreBar" type="TextureRect" parent="PlayerCamera/UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -230.0
-offset_top = -29.0
-offset_right = -8.0
-offset_bottom = -7.0
+offset_left = -128.0
+offset_top = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("24_sww3w")
+
+[node name="Score" type="Label" parent="PlayerCamera/UI/ScoreBar"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -233.0
+offset_top = -33.0
+offset_right = -11.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "000000"
 label_settings = SubResource("LabelSettings_ssvqc")
