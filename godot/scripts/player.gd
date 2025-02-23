@@ -17,7 +17,11 @@ signal died
 
 @export var explosion: PackedScene
 
-@export var collection_radius_sqaure: float = 10000
+@export var collection_radius_sqaure: float = 40000
+@export var mine_rate: float = 1.0
+@export var mine_amount: float = 1.0
+var connected_resource: ResourceAsteroid
+
 
 var is_boost: bool = false:
 	set(new):
@@ -29,6 +33,7 @@ var is_boost: bool = false:
 func _ready() -> void:
 	add_to_group("player")
 	add_to_group("enemy_targets")
+	$MiningTimer.timeout.connect(_mining_timer)
 
 func blow_up() -> void:
 	var explosion_instance = explosion.instantiate()
@@ -63,8 +68,12 @@ func _custom_physics_process(delta: float) -> void:
 		is_boost = true
 	if Input.is_action_just_released("player_boost", true):
 		is_boost = false
-	if Input.is_action_just_pressed("player_collect", true):
-		handle_collection()
+		
+	if Input.is_action_just_pressed("player_collect"):
+		connect_to_resource()
+	if Input.is_action_just_released("player_collect"):
+		disconnect_to_resource()
+	_handle_resource_connection()
 		
 	var linear_drag_val = linear_drag_amount * linear_drag.sample(real_velocity.length() / linear_drag_max_speed)
 	var linear_break_val = breaker * max_linear_breaker_power
@@ -76,10 +85,8 @@ func _custom_physics_process(delta: float) -> void:
 	add_force(-linear_total_slowdown * real_velocity)
 	add_torque(-breaker * real_angular_velocity * max_angular_breaker_power - real_angular_velocity * angular_drag_amount)
 	
-func handle_collection():
+func connect_to_resource():
 	var resources: Array = get_tree().get_nodes_in_group("resources")
-	
-	print("resource nodes: ", resources)
 		
 	if resources.is_empty():
 		return
@@ -87,11 +94,44 @@ func handle_collection():
 	var closest_distance: float = INF
 	var closest_resource: ResourceAsteroid = null
 	for r: ResourceAsteroid in resources:
-		var dist = r.transform.origin.distance_squared_to(self.transform.origin)
+		var dist = r.global_position.distance_squared_to(self.global_position)
 		if dist < closest_distance:
 			closest_distance  = dist
 			closest_resource = r
 			
 	if closest_distance < collection_radius_sqaure:
-		mined.emit(closest_resource.mine(1.0))
+		connected_resource = closest_resource
+		$MiningTimer.wait_time = mine_rate
+		$MiningTimer.start()
+		$Tether.visible = true
+
+func disconnect_to_resource():
+	connected_resource = null
+	$Tether.visible = false
+	$MiningTimer.stop()
+	
+func _handle_resource_connection():
+	if not connected_resource:
+		return
 		
+	if self.global_position.distance_squared_to(connected_resource.global_position) > collection_radius_sqaure:
+		disconnect_to_resource()
+		return
+	
+	var tether: Line2D = $Tether
+	tether.clear_points()
+	tether.add_point(tether.to_local(self.global_position))
+	tether.add_point(tether.to_local(connected_resource.global_position))
+
+	
+func _mining_timer():
+	if not connected_resource or connected_resource.is_queued_for_deletion():
+		disconnect_to_resource()
+	
+	var mine_response: Array = connected_resource.mine(mine_amount)
+	
+	mined.emit(mine_response[1])
+	
+	if mine_response[0]:
+		disconnect_to_resource()
+	
