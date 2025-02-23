@@ -3,7 +3,7 @@ class_name Asteroid extends CustomRigidbody2D
 @export var max_velocity: float = 100
 
 func _ready() -> void:
-	pass
+	add_to_group("destroy_near_base")
 
 func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D) -> void:
 	if other is Asteroid:
