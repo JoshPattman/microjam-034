@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgxbuktm1jydc"]
 
 [ext_resource type="Script" uid="uid://blhinorgbq0b0" path="res://scripts/player_camera.gd" id="1_qupu1"]
-[ext_resource type="Script" path="res://scripts/asteroid_spawn.gd" id="2_wpj71"]
+[ext_resource type="Script" uid="uid://di2ypw3xfxyme" path="res://scripts/asteroid_spawn.gd" id="2_wpj71"]
 
 [node name="PlayerCamera" type="Camera2D"]
 script = ExtResource("1_qupu1")
