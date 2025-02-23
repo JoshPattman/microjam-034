@@ -55,6 +55,20 @@ func _on_rb_collision(point: Vector2, normal: Vector2, other: CustomRigidbody2D)
 	if other_life != null:
 		other_life.damage(1)
 	real_velocity += normal * 200
+	
+func _process(delta: float) -> void:
+	super._process(delta)
+	
+	if is_entering_blackhole:
+		if !$EnterBlackholePlayer.playing:
+			$EnterBlackholePlayer.play()
+	
+	if !is_equal_approx(CustomRigidbody2D.get_global_dt_mult(), 1.0):
+		if !$BlackholeLoopPlayer.playing:
+			$BlackholeLoopPlayer.play()
+	else:
+		$BlackholeLoopPlayer.stop()
+	
 
 func _custom_physics_process(delta: float) -> void:
 	var booster = 0.0
@@ -67,6 +81,13 @@ func _custom_physics_process(delta: float) -> void:
 		booster += 1.0
 	if Input.is_action_pressed("player_back",true):
 		booster -= 1.0
+		
+	if Input.is_action_pressed("player_back",true) or Input.is_action_pressed("player_forward",true):
+		if !$ThrustPlayer.playing:
+			$ThrustPlayer.play()
+	else:
+		$ThrustPlayer.stop()
+
 	if Input.is_action_pressed("player_left", true):
 		rotater -= 1
 	if Input.is_action_pressed("player_right", true):
@@ -76,6 +97,7 @@ func _custom_physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("player_jump", true) && game_controller.player_boosts > 0:
 		global_position += current_forward() * 175
 		game_controller.player_boosts -= 1
+		$JumpPlayer.play()
 		
 	if Input.is_action_just_pressed("player_collect"):
 		connect_to_resource()
@@ -92,6 +114,8 @@ func _custom_physics_process(delta: float) -> void:
 	
 	add_force(-linear_total_slowdown * real_velocity)
 	add_torque(-breaker * real_angular_velocity * max_angular_breaker_power - real_angular_velocity * angular_drag_amount)
+	
+
 	
 func connect_to_resource():
 	var resources: Array = get_tree().get_nodes_in_group("resources")
@@ -112,11 +136,13 @@ func connect_to_resource():
 		$MiningTimer.wait_time = mine_rate
 		$MiningTimer.start()
 		$Tether.visible = true
+		$MiningLoopPlayer.play()
 
 func disconnect_to_resource():
 	connected_resource = null
 	$Tether.visible = false
 	$MiningTimer.stop()
+	$MiningLoopPlayer.stop()
 	
 func _handle_resource_connection():
 	if not connected_resource:
@@ -144,6 +170,8 @@ func _mining_timer():
 	if connected_resource is ResourceAsteroid:
 		var mine_response: Array = connected_resource.mine(mine_amount)
 		mined.emit(mine_response[1])
+		$MinePlayer.play()
+		
 		
 		if mine_response[0]:
 			disconnect_to_resource()
@@ -158,6 +186,7 @@ func _mining_timer():
 
 func _on_hurt(to: float) -> void:
 	_show_bubble()
+	$ShieldHitPlayer.play()
 	
 func _on_health_change(to: float) -> void:
 	var game_controller: Game = get_tree().get_first_node_in_group("game_controller")
