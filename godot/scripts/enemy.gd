@@ -9,16 +9,25 @@ var current_target: Node2D
 
 var target_direction: Vector2
 
-@export var k_targeting = 0.5
+@export var k_targeting = 1
 @export var k_avoiding = 0.5
+@export var k_separate = 0.5
+
+@export var separate_radius = 50
 
 @export var is_kamikazee: bool = false
 @export var kamikazee_range: float = 40
 @export var kamikazee_explosion: PackedScene
 
 var things_to_avoid: Array[EnemyAvoid] = []
+var enemies_in_range: Array[Enemy] = []
 var recalc_avoids_timer: float = 0.0
 var recalc_avoids_every: float = 0.25
+
+func _move_and_slide(delta: float) -> void:
+	var col = move_and_collide(delta * velocity)
+	if col != null:
+		blow_up()
 
 func _ready() -> void:
 	add_to_group("enemies")
@@ -36,23 +45,41 @@ func _custom_process(delta: float) -> void:
 		var avoids = get_tree().get_nodes_in_group("enemy_avoid")
 		things_to_avoid.clear()
 		for a in avoids:
-			if a is EnemyAvoid:
+			if a != null && a is EnemyAvoid:
 				things_to_avoid.append(a)
+		var enems = get_tree().get_nodes_in_group("enemies")
+		enemies_in_range.clear()
+		for e in enems:
+			if e != null && e is Enemy && e != self:
+				enemies_in_range.append(e)
 		recalc_avoids_timer = 0
 	recalc_avoids_timer += delta
 	
+	var d_separate = Vector2()
+	for e in enemies_in_range:
+		if e == null:
+			continue
+		var e_delta = e.global_position - global_position
+		var e_dist = e_delta.length()
+		if e_dist > separate_radius:
+			continue
+		d_separate -= (e_delta/e_dist) * (1 - (e_dist/separate_radius))
+	if d_separate.length() > 1:
+		d_separate = d_separate.normalized()
+	
 	var d_avoid = Vector2()
 	for a in things_to_avoid:
-		if a != null && a is EnemyAvoid:
-			var a_delta = a.global_position - global_position
-			var a_dist = a_delta.length()
-			if a_dist > a.radius:
-				continue
-			d_avoid -= (a_delta/a_dist) * (1 - (a_dist/a.radius)) * a.weight
+		if a == null:
+			continue
+		var a_delta = a.global_position - global_position
+		var a_dist = a_delta.length()
+		if a_dist > a.radius:
+			continue
+		d_avoid -= (a_delta/a_dist) * (1 - (a_dist/a.radius)) * a.weight
 	if d_avoid.length() > 1:
 		d_avoid = d_avoid.normalized()
 	
-	target_direction = d_target*k_targeting + d_avoid*k_avoiding
+	target_direction = d_target*k_targeting + d_avoid*k_avoiding + d_separate*k_separate
 	if target_direction.length() > 1:
 		target_direction = target_direction.normalized()
 	
