@@ -15,7 +15,7 @@ func _ready() -> void:
 	if life != null:
 		life.on_health_changed.connect(_on_health_changed)
 		life.on_die.connect(_on_die)
-		life.current_life = 10
+		life.current_life = 25
 	print("Station health started at ", life.current_life, ", ", life.initial_life)
 	$TurretShooter/Sprite2D.queue_free()
 

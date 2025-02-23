@@ -70,3 +70,4 @@ metadata/_custom_type_script = "uid://bfk8htwmce2hg"
 
 [node name="FirePlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_t7ueb")
+volume_db = -10.0

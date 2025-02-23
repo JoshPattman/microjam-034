@@ -159,12 +159,12 @@ func _get_random_enemy_spawn_loc(at_player: bool) -> Vector2:
 	
 	if at_player:
 		# Spawn around the player
-		return player_pos + Vector2(sqrt(randf_range(500*500, 1000*1000)), 0).rotated(randf_range(0, PI))
+		return player_pos + Vector2(sqrt(randf_range(400*400, 700*700)), 0).rotated(randf_range(0, PI*2))
 	else:
 		# Spawn around the base
 		var loc: Vector2 = player_pos
-		while loc.distance_to(player_pos) < 800:
-			loc = Vector2(sqrt(randf_range(0, 1000*1000)), 0).rotated(randf_range(0, PI))
+		while loc.distance_to(player_pos) < 650:
+			loc = Vector2(sqrt(randf_range(0, 1000*1000)), 0).rotated(randf_range(0, PI*2))
 		return loc
 
 func _handle_placing() -> void:

@@ -64,7 +64,7 @@ autoplay = "rotate"
 
 [node name="Life" type="Node" parent="."]
 script = ExtResource("5_fms4r")
-initial_life = 10
+initial_life = 25
 metadata/_custom_type_script = "uid://bfk8htwmce2hg"
 
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="."]

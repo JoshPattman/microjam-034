@@ -115,6 +115,7 @@ texture = ExtResource("6_mq4jh")
 
 [node name="JumpPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_7rdht")
+volume_db = -15.0
 
 [node name="ThrustPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_xfs5t")
@@ -126,7 +127,7 @@ volume_db = -10.0
 
 [node name="MinePlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_pbirh")
-volume_db = -10.0
+volume_db = -15.0
 
 [node name="ShieldHitPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_ghwos")

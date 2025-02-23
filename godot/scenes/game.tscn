@@ -401,3 +401,4 @@ autoplay = true
 
 [node name="PlaceTowerPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_pl11u")
+volume_db = -15.0
