@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 	
 	time_since_last_enemy += delta * CustomRigidbody2D.get_global_dt_mult()
 	if time_since_last_enemy > enemy_frequency:
-		enemy_frequency *= 0.98
+		enemy_frequency *= 0.981
 		if enemy_frequency < 0.1:
 			enemy_frequency = 0.1
 		print(enemy_frequency)

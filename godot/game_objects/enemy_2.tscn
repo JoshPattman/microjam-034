@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckg8n7tp8qsca"]
+
+[ext_resource type="Script" uid="uid://ccw4ax373njdf" path="res://scripts/enemy.gd" id="1_d3d7c"]
+[ext_resource type="PackedScene" uid="uid://fflvvbkq6cur" path="res://game_objects/explosion.tscn" id="2_x2w6d"]
+[ext_resource type="Texture2D" uid="uid://oxl6gv2f8e4f" path="res://sprites/enemy001.png" id="3_fvb53"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0o6d6"]
+radius = 14.3178
+
+[sub_resource type="Animation" id="Animation_k1174"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33, 0.66),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_ettaq"]
+resource_name = "thrust"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hc57"]
+_data = {
+&"RESET": SubResource("Animation_k1174"),
+&"thrust": SubResource("Animation_ettaq")
+}
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_d3d7c")
+speed = 150.0
+k_avoiding = 1.0
+separate_radius = 100
+is_kamikazee = true
+kamikazee_explosion = ExtResource("2_x2w6d")
+metadata/_custom_type_script = "uid://ccw4ax373njdf"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("3_fvb53")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0o6d6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0hc57")
+}
+autoplay = "RESET"
