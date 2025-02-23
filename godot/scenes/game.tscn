@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhfdk1ufae0dw" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://db7at2foucunm" path="res://sprites/background001.png" id="1_lnu2h"]
-[ext_resource type="Script" path="res://scripts/spawn_group.gd" id="2_0tnpc"]
+[ext_resource type="Script" uid="uid://os1jkm3q84or" path="res://scripts/spawn_group.gd" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://rm50arymrac8" path="res://game_objects/station.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ckg8n7tp8qsca" path="res://game_objects/enemy_2.tscn" id="4_ca42v"]
 [ext_resource type="Texture2D" uid="uid://djmwl2eifidgp" path="res://sprites/background-base001.png" id="4_dinhu"]
@@ -23,16 +23,19 @@
 
 [sub_resource type="Resource" id="Resource_vtaks"]
 script = ExtResource("2_0tnpc")
+min_wave = 0
 items = Array[PackedScene]([ExtResource("6_u5sy4")])
 metadata/_custom_type_script = "uid://os1jkm3q84or"
 
 [sub_resource type="Resource" id="Resource_kvpfn"]
 script = ExtResource("2_0tnpc")
+min_wave = 3
 items = Array[PackedScene]([ExtResource("6_u5sy4"), ExtResource("6_u5sy4"), ExtResource("6_u5sy4")])
 metadata/_custom_type_script = "uid://os1jkm3q84or"
 
 [sub_resource type="Resource" id="Resource_rysoc"]
 script = ExtResource("2_0tnpc")
+min_wave = 6
 items = Array[PackedScene]([ExtResource("4_ca42v")])
 metadata/_custom_type_script = "uid://os1jkm3q84or"
 
@@ -48,11 +51,10 @@ font = ExtResource("15_rysoc")
 [node name="Game" type="Node2D"]
 position = Vector2(0, -1)
 script = ExtResource("1_iywne")
-enemy_spawn_groups = Array[ExtResource("2_0tnpc")]([SubResource("Resource_vtaks"), SubResource("Resource_kvpfn"), SubResource("Resource_rysoc")])
-enemy_frequency = 5.0
 shooter_prefab = ExtResource("4_kvpfn")
 bouncer_prefab = ExtResource("5_dinhu")
 mine_prefab = ExtResource("6_ir15t")
+enemy_spawn_groups = Array[ExtResource("2_0tnpc")]([SubResource("Resource_vtaks"), SubResource("Resource_kvpfn"), SubResource("Resource_rysoc")])
 
 [node name="Background" type="Node2D" parent="."]
 z_index = -10
@@ -202,9 +204,6 @@ position = Vector2(3856, 1513)
 
 [node name="Blackhole5" parent="Holes" instance=ExtResource("6_p57ef")]
 position = Vector2(-2883, -3102)
-
-[node name="Enemy" parent="." instance=ExtResource("4_ca42v")]
-position = Vector2(-94, 29)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_1kice")

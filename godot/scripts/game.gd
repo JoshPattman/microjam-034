@@ -7,12 +7,7 @@ var time_since_last_asteroid: float = 0.0
 
 var resource_asteroid_scene = preload("res://game_objects/resource_asteroid.tscn")
 
-@export var enemy_spawn_groups: Array[SpawnGroup]
-@export var enemy_frequency: float = 1.0
-@export var max_enemies = 10
-@export var enemy_spawn_radius: float = 50
-var time_since_last_enemy: float = 0.0
-
+@export_category("Turrets")
 @export var shooter_prefab: PackedScene
 @export var bouncer_prefab: PackedScene
 @export var mine_prefab: PackedScene
@@ -20,6 +15,15 @@ var time_since_last_enemy: float = 0.0
 @export var shooter_turret_cost: float = 5.0
 @export var bouncer_turret_cost: float = 3.0
 @export var mine_turret_cost: float = 1.0
+
+@export_category("Spawning")
+@export var wave_count_m: float = 2
+@export var wave_count_c: float = 2
+@export var wave_delay: float = 30.0
+@export var enemy_spawn_groups: Array[SpawnGroup]
+
+var wave_counter: int = 0
+var wave_timer: float = 0.0
 
 var player_resources: float = 0.0:
 	set(new):
@@ -40,13 +44,14 @@ func _process(delta: float) -> void:
 		_spawn_meteroite()
 		time_since_last_asteroid = 0.0
 	
-	time_since_last_enemy += delta * CustomRigidbody2D.get_global_dt_mult()
-	if time_since_last_enemy > enemy_frequency:
-		enemy_frequency *= 0.981
-		if enemy_frequency < 0.1:
-			enemy_frequency = 0.1
-		_spawn_enemy(randf() > 0.75)
-		time_since_last_enemy = 0
+	if wave_timer > wave_delay:
+		var count: int = round(wave_count_m * float(wave_counter) + wave_count_c)
+		print("Spawning ", count, " enemy groups")
+		for i in range(count):
+			_spawn_enemy_group(randf()>0.85)
+		wave_timer = 0
+		wave_counter += 1
+	wave_timer += delta * CustomRigidbody2D.get_global_dt_mult()
 	
 	if !is_equal_approx(1.0, CustomRigidbody2D.get_global_dt_mult()):
 		$PlayerCamera/UI/TimeDilation.visible = true
@@ -57,10 +62,12 @@ func _process(delta: float) -> void:
 	_handle_placing()
 
 
-func _spawn_enemy(at_player: bool):
-	if len(get_tree().get_nodes_in_group("enemies")) >= max_enemies:
-		return
-	var group = enemy_spawn_groups[randi_range(0, len(enemy_spawn_groups)-1)]
+func _spawn_enemy_group(at_player: bool):
+	var relev_spawn_groups: Array[SpawnGroup] = []
+	for s in enemy_spawn_groups:
+		if s.min_wave <= wave_counter:
+			relev_spawn_groups.append(s)
+	var group = relev_spawn_groups[randi_range(0, len(relev_spawn_groups)-1)]
 	var loc = _get_random_enemy_spawn_loc(at_player)
 	var angle: float = 0.0
 	for elem: PackedScene in group.items:
