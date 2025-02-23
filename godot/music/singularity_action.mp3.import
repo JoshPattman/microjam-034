@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/singularity_action.mp3-8e7566a376e445387dd3e7
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
