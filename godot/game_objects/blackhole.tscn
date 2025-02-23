@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vjj0eerp052v" path="res://scripts/time_dialater.gd" id="1_nhp80"]
 [ext_resource type="Texture2D" uid="uid://b15ewfavom2mn" path="res://sprites/blackhole001.png" id="2_2fgl8"]
-[ext_resource type="Script" path="res://scripts/black_hole.gd" id="3_dy8lm"]
+[ext_resource type="Script" uid="uid://43pj2c80awim" path="res://scripts/black_hole.gd" id="3_dy8lm"]
 [ext_resource type="Script" uid="uid://pbr77i1ed5mv" path="res://scripts/enemy_avoid.gd" id="4_cjxyd"]
 [ext_resource type="Script" uid="uid://du0hqhq11n05h" path="res://scripts/special_resource_source.gd" id="5_enolj"]
 
@@ -59,4 +59,5 @@ process_material = SubResource("ParticleProcessMaterial_bu7xi")
 [node name="SpecialResourceSource" type="Node2D" parent="."]
 script = ExtResource("5_enolj")
 boost = 0.25
+score = 250
 metadata/_custom_type_script = "uid://du0hqhq11n05h"
