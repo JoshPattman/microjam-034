@@ -58,6 +58,7 @@ process_material = SubResource("ParticleProcessMaterial_bu7xi")
 
 [node name="SpecialResourceSource" type="Node2D" parent="."]
 script = ExtResource("5_enolj")
-boost = 0.25
+boost = 1.0
 score = 250
 metadata/_custom_type_script = "uid://du0hqhq11n05h"
+metadata/_edit_group_ = true
