@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 
 func get_multiplier_at(pos: Vector2) -> float:
 	var dist = (position-pos).length()
-	if dist > slow_range:
+	if dist > slow_range or slow_range == 0.0:
 		return 1.0
 	var t = 1 - (dist / slow_range)
 	t = t*t
@@ -27,6 +27,6 @@ func get_multiplier_at(pos: Vector2) -> float:
 func get_acceleration_at(pos: Vector2) -> Vector2:
 	var delta = (position-pos)
 	var dist = delta.length()
-	if dist > pull_range:
+	if dist > pull_range or dist == 0.0 or pull_range == 0.0:
 		return Vector2()
 	return (delta / dist) * (1 - (dist/pull_range)) * pull_force
